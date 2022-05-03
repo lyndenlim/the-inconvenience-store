@@ -1,0 +1,10 @@
+.photo {
+    height: 250px;
+    width: 250px;
+}
+
+.photo-container {
+    height: 250px;
+    width: 250px;
+    margin: 12px;   
+}

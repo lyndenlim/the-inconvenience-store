@@ -1,19 +1,18 @@
 import { useEffect, useState } from "react"
 import "./Homepage.css"
 import items from "./items"
+import Item from "../Item/Item"
 
 function HomePage() {
-  const [photos, setPhotos] = useState([])
+  const [photoArray, setPhotoArray] = useState([])
 
   useEffect(() => {
-    const photoArray = items.map(item => item.photos)
-    setPhotos(photoArray)
-    // photoArray.map(photo => console.log(photo))
+    setPhotoArray(items.map(item => item.photos))
   }, [])
 
   return (
     <div className="item">
-      {photos.map(photo => photo.map(item => <img key={item} className="photo" src={require(`../../photos/${item}.jpeg`)} alt={item} />))}
+      {photoArray.map(photo => <Item key={photo} photo={photo}/>)}
     </div>
   )
 }
