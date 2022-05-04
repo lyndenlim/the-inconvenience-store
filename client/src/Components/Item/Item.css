@@ -1,4 +1,5 @@
 .photo {
+    object-fit: cover;
     height: 350px;
     width: 370px;
 }
