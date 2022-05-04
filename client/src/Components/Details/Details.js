@@ -17,7 +17,7 @@ function Details() {
             setItemDetails(data.data)
             setPrice(parseFloat(data.data.price).toFixed(2))
             setMainPhoto(data.data.photos[0])
-            setSubPhotos(data.data.photos.slice(1, data.data.photos.length))
+            setSubPhotos(data.data.photos)
         }
 
         getItemDetails()
@@ -36,7 +36,7 @@ function Details() {
             </div>
             {subPhotos.length > 0 ?
                 <div className="col-2 sub-photo-container">
-                    {subPhotos.map(photo => <img className="sub-photo" src={require(`../../photos/${photo}.jpeg`)} alt="sub" />)}
+                    {subPhotos.map(photo => <img onClick={() => setMainPhoto(photo)} className="sub-photo" src={require(`../../photos/${photo}.jpeg`)} alt="sub" />)}
                 </div>
                 :
                 null}

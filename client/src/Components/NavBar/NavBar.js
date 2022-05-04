@@ -9,14 +9,14 @@ function NavBar() {
     return (
         <Navbar>
             <Container fluid>
-                <Link to="/">
+                <Link to="/homepage">
                     <div>
                         The Inconvienence Store
                     </div>
                 </Link>
-                <Link to={location.pathname === "/login" ? "/signup" : "/login"}>
+                <Link to={location.pathname === "/" ? "/signup" : "/"}>
                     <div>
-                        {location.pathname === "/login" ? "Sign Up" : "Login"}
+                        {location.pathname === "/" ? "Sign Up" : "Login"}
                     </div>
                 </Link>
             </Container>
