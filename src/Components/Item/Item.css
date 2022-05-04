@@ -1,4 +1,5 @@
 .photo {
+    position: relative;
     height: 250px;
     width: 250px;
 }
@@ -6,5 +7,9 @@
 .photo-container {
     height: 250px;
     width: 250px;
-    margin: 12px;   
+    margin: 12px;
+}
+
+.photo:hover {
+    opacity: 0.5;
 }

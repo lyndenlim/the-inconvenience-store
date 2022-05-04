@@ -1,11 +1,11 @@
-import "./Login.css"
 import { Link } from "react-router-dom"
+import "./Signup.css"
 
-function Login() {
+function Signup() {
     return (
-        <div className="login-container">
+        <div className="signup-container">
             <div>
-                <h2>Login</h2>
+                <h2>Sign up</h2>
                 <form>
                     Email
                     <input placeholder="email" autoComplete="new-password" required />
@@ -14,12 +14,12 @@ function Login() {
                     <input placeholder="password" type="password" autoComplete="new-password" required />
                     <br />
                     <br />
-                    <button type="submit">Login</button>
+                    <button type="submit">Sign up </button>
                 </form>
-                Don't have an account? Sign up <Link to="/signup">here</Link>.
+                Already have an account? <Link to="/login">Login</Link>.
             </div>
         </div>
     )
 }
 
-export default Login
+export default Signup
