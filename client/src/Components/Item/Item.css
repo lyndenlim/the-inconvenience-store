@@ -1,0 +1,22 @@
+.photo {
+    height: 350px;
+    width: 370px;
+}
+
+.photo-container {
+    height: 350px;
+    width: 370px;
+    margin: 12px;   
+}
+
+.photo:hover {
+    opacity: 0.5;
+}
+
+.photo:hover + .name {
+    visibility: visible;
+}
+
+.name {
+    visibility: hidden;
+}
