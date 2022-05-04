@@ -1,10 +1,11 @@
 import { useEffect, useState, useRef } from "react"
 import "./Homepage.css"
-import items from "./items"
 import Item from "../Item/Item"
+import axios from "axios"
 
 function HomePage() {
   const [itemArray, setItemArray] = useState([])
+  const [items, setItems] = useState([])
   const allCategory = useRef()
   const kitchenCategory = useRef()
   const rainCategory = useRef()
@@ -13,8 +14,15 @@ function HomePage() {
   const otherCategory = useRef()
 
   useEffect(() => {
-    setItemArray(items.map(item => item))
+    async function getAllItems() {
+      const data = await axios.get("/items")
+      setItems(data.data)
+      setItemArray(data.data.map(item => item))    
+    }
+
     allCategory.current.classList.add("active")
+
+    getAllItems()
   }, [])
 
   function sortByAll() {
