@@ -11,7 +11,7 @@ function NavBar() {
             <Container fluid>
                 <Link to="/">
                     <div>
-                        Ecommerce
+                        The Inconvienence Store
                     </div>
                 </Link>
                 <Link to="/login">

@@ -1,10 +1,10 @@
 import { useParams } from "react-router-dom"
 
 function Details() {
-    const {item} = useParams()
+    const { id } = useParams()
 
     return (
-        <div>{item}</div>
+        <div>{id}</div>
     )
 }
 
