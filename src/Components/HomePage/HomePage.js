@@ -12,7 +12,7 @@ function HomePage() {
 
   return (
     <div className="item">
-      {photoArray.map(photo => <Item key={photo} photo={photo}/>)}
+      {photoArray.map((photo, index) => <Item key={photo} id={index + 1} photo={photo} />)}
     </div>
   )
 }

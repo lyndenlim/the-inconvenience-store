@@ -1,13 +1,12 @@
 .photo {
-    position: relative;
-    height: 250px;
-    width: 250px;
+    height: 350px;
+    width: 370px;
 }
 
 .photo-container {
-    height: 250px;
-    width: 250px;
-    margin: 12px;
+    height: 350px;
+    width: 370px;
+    margin: 12px;   
 }
 
 .photo:hover {

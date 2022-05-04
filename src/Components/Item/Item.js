@@ -2,7 +2,7 @@ import { Carousel } from "react-bootstrap"
 import { Link } from "react-router-dom"
 import "./Item.css"
 
-function Item({ photo }) {
+function Item({ photo, id }) {
     return (
         <div className="photo-container">
             {photo.length > 1 ?
@@ -11,7 +11,7 @@ function Item({ photo }) {
                         <Carousel.Item key={image}>
                             <Link to={`/items/${image}`}>
                                 <div>
-                                    <img className="photo" src={require(`../../photos/${image}.jpeg`)} alt={image} />
+                                    <img id={id} className="photo" src={require(`../../photos/${image}.jpeg`)} alt={image} />
                                 </div>
                             </Link>
                         </Carousel.Item>)}
@@ -20,7 +20,7 @@ function Item({ photo }) {
                 photo.map(image =>
                     <Link key={image} to={`/items/${image}`}>
                         <div>
-                            <img className="photo" src={require(`../../photos/${image}.jpeg`)} alt={image} />
+                            <img id={id} className="photo" src={require(`../../photos/${image}.jpeg`)} alt={image} />
                         </div>
                     </Link>)}
         </div>
