@@ -86,7 +86,7 @@ function HomePage() {
   }
 
   return (
-    <div>
+    <div className="homepage-container">
       <div className="category-container">
         <button id="all" onClick={sortByAll} className="category" ref={allCategory}>
           All

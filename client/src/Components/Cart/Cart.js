@@ -18,7 +18,6 @@ function Cart({ cartCount, cartItems }) {
         <div className="row">
             <div className="col-6 cart-items">
                 {cartItems.map((item, index) => {
-                    console.log(item.price)
                     return (
                         <div className="cart-item-container" key={index}>
                             <img className="cart-image" src={require(`../../photos/${item.photo}.jpeg`)} alt="cart" />

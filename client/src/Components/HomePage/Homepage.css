@@ -9,6 +9,7 @@
     margin: 5px;
     background: transparent;
     border: none;
+    font-size: 30px;
 }
 
 .category:hover {
@@ -21,4 +22,8 @@
 
 .active {
     color: #0c6efd;
+}
+
+.homepage-container {
+    padding-top: 20px;
 }

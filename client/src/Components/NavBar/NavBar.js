@@ -42,7 +42,7 @@ function NavBar({ user, setUser, cartCount }) {
                                 <ShoppingCartIcon />{" "}
                             </Badge>
                         </button>
-                        <button className="account-button">Account</button>
+                        <button onClick={() => navigate("/account")} className="account-button">Account</button>
                         <button onClick={handleLogout} className="logout-button">Logout</button>
                     </div>}
             </Container>

@@ -6,6 +6,7 @@ import Login from "./Components/Login/Login";
 import NavBar from './Components/NavBar/NavBar';
 import Signup from "./Components/Signup/Signup";
 import Cart from "./Components/Cart/Cart";
+import AccountPage from "./Components/AccountPage/AccountPage";
 
 function App() {
   const [user, setUser] = useState("")
@@ -32,6 +33,7 @@ function App() {
         <Route path="/signup" element={<Signup setUser={setUser} />} />
         <Route path="/items/:id" element={<Details setCartCount={setCartCount} setCartItems={setCartItems} cartItems={cartItems} />} />
         <Route path="/cart" element={<Cart cartCount={cartCount} cartItems={cartItems} />} />
+        <Route path="/account" element={<AccountPage user={user}/>} />
       </Routes>
     </div>
   );

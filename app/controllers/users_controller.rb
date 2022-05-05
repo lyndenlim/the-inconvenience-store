@@ -18,7 +18,7 @@ class UsersController < ApplicationController
   def update
     user = @current_user
     user.update!(params.permit(:email))
-    render json: user
+    return render json: user
     if user.authenticate(params[:old_password])
       user.update!(params.permit(:password, :password_confirmation))
       render json: user
