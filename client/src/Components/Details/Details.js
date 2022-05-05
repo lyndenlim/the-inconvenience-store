@@ -37,15 +37,16 @@ function Details({ setCartCount, setCartItems, cartItems }) {
 
     function addToCart(e) {
         e.preventDefault()
-        setCartCount(cartCount => cartCount + quantity)
-        setCartItems([...cartItems, {id: id, name: itemDetails.name, quantity: quantity, photo: mainPhoto, price: itemDetails.price }])
-        setQuantity(1)
         
-        // for (let item in cartItems) {
-        //     if (cartItems[item].name === itemDetails.name) {
-        //         cartItems[item].quantity += quantity
-        //     } 
+        // for (let i = 0; i < cartItems.length; i++) {
+        //     if (cartItems[i].id === id) {
+        //         cartItems[i].quantity += quantity
+        //     }
         // }
+        
+        setCartCount(cartCount => cartCount + quantity)
+        setQuantity(1)
+        setCartItems([...cartItems, { id: id, name: itemDetails.name, quantity: quantity, photo: mainPhoto, price: itemDetails.price }])
     }
 
     return (

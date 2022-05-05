@@ -1,0 +1,8 @@
+.checkout-container {
+    /* display: flex;
+    justify-items: center;
+    align-items: center; */
+    text-align: center;
+    /* height: 85vh; */
+    margin: 5px;
+}

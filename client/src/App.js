@@ -7,6 +7,7 @@ import NavBar from './Components/NavBar/NavBar';
 import Signup from "./Components/Signup/Signup";
 import Cart from "./Components/Cart/Cart";
 import AccountPage from "./Components/AccountPage/AccountPage";
+import CheckoutPage from "./Components/CheckoutPage/CheckoutPage";
 
 function App() {
   const [user, setUser] = useState("")
@@ -21,7 +22,7 @@ function App() {
             .then(user => setUser(user));
         }
       })
-  }, [])
+  }, [cartItems])
 
 
   return (
@@ -32,8 +33,9 @@ function App() {
         <Route path="/homepage" element={<HomePage />} />
         <Route path="/signup" element={<Signup setUser={setUser} />} />
         <Route path="/items/:id" element={<Details setCartCount={setCartCount} setCartItems={setCartItems} cartItems={cartItems} />} />
-        <Route path="/cart" element={<Cart cartCount={cartCount} cartItems={cartItems} />} />
-        <Route path="/account" element={<AccountPage user={user}/>} />
+        <Route path="/cart" element={<Cart setCartCount={setCartCount} cartCount={cartCount} cartItems={cartItems} />} />
+        <Route path="/account" element={<AccountPage user={user} />} />
+        <Route path="/checkout" element={<CheckoutPage user={user} />} />
       </Routes>
     </div>
   );

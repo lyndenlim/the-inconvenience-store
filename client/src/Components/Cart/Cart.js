@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react"
+import { useNavigate } from "react-router-dom"
 import "./Cart.css"
 
-function Cart({ cartCount, cartItems }) {
+function Cart({ setCartCount, cartCount, cartItems }) {
     const [total, setTotal] = useState("")
+    const navigate = useNavigate()
 
     useEffect(() => {
         function getTotal() {
@@ -12,7 +14,17 @@ function Cart({ cartCount, cartItems }) {
         }
 
         getTotal()
-    })
+    }, [])
+
+    function removeFromCart(id) {
+        for (let i = 0; i < cartItems.length; i++) {
+            if (cartItems[i].id === id) {
+                console.log(cartItems[i].quantity)
+                setCartCount(cartCount => cartCount - cartItems[i].quantity)
+                cartItems.splice(i, 1)
+            }
+        }
+    }
 
     return (
         <div className="row">
@@ -22,8 +34,7 @@ function Cart({ cartCount, cartItems }) {
                         <div className="cart-item-container" key={index}>
                             <img className="cart-image" src={require(`../../photos/${item.photo}.jpeg`)} alt="cart" />
                             <p className="cart-description">{item.name} x{item.quantity} - ${(item.price * item.quantity).toFixed(2)}</p>
-                            <button>Edit</button>
-                            <button>Delete</button>
+                            <button onClick={() => removeFromCart(item.id)}>Delete</button>
                         </div>
                     )
                 }
@@ -33,7 +44,7 @@ function Cart({ cartCount, cartItems }) {
                 <div className="col-6 cart-total">
                     <p>You have {cartCount} items.</p>
                     <p>Cart Total: ${total}</p>
-                    <button>Checkout</button>
+                    <button onClick={() => navigate("/checkout")}>Checkout</button>
                 </div>
                 :
                 <div className="empty-cart">
