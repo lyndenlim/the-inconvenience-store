@@ -1,0 +1,30 @@
+.cart-container {
+    text-align: center;
+}
+
+.cart-image {
+    height: 200px;
+    width: 200px;
+    object-fit: contain;
+}
+
+.cart-total, .cart-items {
+    text-align: center;
+}
+
+.row {
+    display: flex;
+    align-items: center;
+    /* justify-content: center; */
+}
+
+.empty-cart {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 85vh;
+}
+
+.cart-item-container {
+    margin-bottom: 20px;
+}

@@ -31,7 +31,7 @@ function Login({ setUser }) {
     return (
         <div className="login-container">
             <div>
-                <h2>Login</h2>
+                <h2>Welcome Back!</h2>
                 <form onSubmit={handleLogin}>
                     Email
                     <input onChange={e => setEmail(e.target.value)} placeholder="email" type="email" autoComplete="new-password" required />

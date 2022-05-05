@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom"
 import axios from "axios"
 import "./Details.css"
 
-function Details() {
+function Details({ setCartCount, setCartItems, cartItems }) {
     const { id } = useParams()
     const [itemDetails, setItemDetails] = useState("")
     const [price, setPrice] = useState("")
@@ -23,10 +23,29 @@ function Details() {
         getItemDetails()
     }, [])
 
+    function addQuantity() {
+        if (quantity >= 1) {
+            setQuantity(quantity => quantity + 1)
+        }
+    }
+
+    function removeQuantity() {
+        if (quantity > 1) {
+            setQuantity(quantity => quantity - 1)
+        }
+    }
+
     function addToCart(e) {
         e.preventDefault()
-        console.log(quantity)
+        setCartCount(cartCount => cartCount + quantity)
+        setCartItems([...cartItems, {id: id, name: itemDetails.name, quantity: quantity, photo: mainPhoto, price: itemDetails.price }])
         setQuantity(1)
+        
+        // for (let item in cartItems) {
+        //     if (cartItems[item].name === itemDetails.name) {
+        //         cartItems[item].quantity += quantity
+        //     } 
+        // }
     }
 
     return (
@@ -34,9 +53,9 @@ function Details() {
             <div className="col-6 item-photo-container" >
                 <img className="main-photo" src={mainPhoto ? require(`../../photos/${mainPhoto}.jpeg`) : null} alt="main" />
             </div>
-            {subPhotos.length > 0 ?
+            {subPhotos.length > 1 ?
                 <div className="col-2 sub-photo-container">
-                    {subPhotos.map(photo => <img onClick={() => setMainPhoto(photo)} className="sub-photo" src={require(`../../photos/${photo}.jpeg`)} alt="sub" />)}
+                    {subPhotos.map(photo => <img key={photo} onClick={() => setMainPhoto(photo)} className="sub-photo" src={require(`../../photos/${photo}.jpeg`)} alt="sub" />)}
                 </div>
                 :
                 null}
@@ -46,9 +65,9 @@ function Details() {
                 <p>Category: {itemDetails.category}</p>
                 <p>{itemDetails.description}</p>
                 <form onSubmit={addToCart}>
-                    <input onChange={e => setQuantity(parseInt(e.target.value))} className="quantity" value={quantity} min="0" autoComplete="new-password" type="number" required />
-                    <button onClick={() => setQuantity(quantity => quantity + 1)} type="button">+</button>
-                    <button onClick={() => setQuantity(quantity => quantity - 1)} type="button">-</button>
+                    <input onChange={e => setQuantity(parseInt(e.target.value))} className="quantity" value={quantity} min="1" autoComplete="new-password" type="number" required />
+                    <button onClick={addQuantity} type="button">+</button>
+                    <button onClick={removeQuantity} type="button">-</button>
                     <br />
                     <br />
                     <button type="submit">Add to cart</button>

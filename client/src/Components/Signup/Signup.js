@@ -36,7 +36,7 @@ function Signup({ setUser }) {
     return (
         <div className="signup-container">
             <div>
-                <h2>Sign up</h2>
+                <h2>Let's Get Started</h2>
                 <form onSubmit={handleSignUp}>
                     Email
                     <input onChange={(e) => setEmail(e.target.value)} placeholder="email" type="email" autoComplete="new-password" required />

@@ -3,8 +3,10 @@ import "./NavBar.css"
 import Navbar from "react-bootstrap/Navbar"
 import Container from "react-bootstrap/Container"
 import { Link, useNavigate, useLocation } from "react-router-dom"
+import Badge from "@mui/material/Badge"
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart"
 
-function NavBar({ user, setUser }) {
+function NavBar({ user, setUser, cartCount }) {
     const location = useLocation()
     const navigate = useNavigate()
 
@@ -22,19 +24,24 @@ function NavBar({ user, setUser }) {
     return (
         <Navbar>
             <Container fluid>
-                <Link to="/homepage">
+                <Link className="link" to="/homepage">
                     <div>
                         The Inconvienence Store
                     </div>
                 </Link>
                 {!user ?
-                    <Link to={location.pathname === "/" ? "/signup" : "/"}>
+                    <Link className="link" to={location.pathname === "/" ? "/signup" : "/"}>
                         <div>
                             {location.pathname === "/" ? "Sign Up" : "Login"}
                         </div>
                     </Link>
                     :
                     <div>
+                        <button onClick={() => navigate("/cart")} className="cart-button">
+                            <Badge color="error" badgeContent={cartCount} >
+                                <ShoppingCartIcon />{" "}
+                            </Badge>
+                        </button>
                         <button className="account-button">Account</button>
                         <button onClick={handleLogout} className="logout-button">Logout</button>
                     </div>}
