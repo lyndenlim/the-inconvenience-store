@@ -85,6 +85,3 @@ numquam blanditiis harum quisquam eius", photos: ["watering_can1", "watering_can
 Item.create(name: "Wine Glass", price: 60.00, category: "kitchen", description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
 molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum
 numquam blanditiis harum quisquam eius", photos: ["wine_glass1", "wine_glass2"])
-
-User.create(email: "test@test.com", password_digest: "cow")
-Order.create(user_id: 1, item_id: 1, quantity: 1, total: Item.find(1).price * 1)

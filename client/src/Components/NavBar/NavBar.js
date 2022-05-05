@@ -1,10 +1,23 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
+import "./NavBar.css"
 import Navbar from "react-bootstrap/Navbar"
 import Container from "react-bootstrap/Container"
-import { Link, useLocation } from "react-router-dom"
+import { Link, useNavigate, useLocation } from "react-router-dom"
 
-function NavBar() {
+function NavBar({ user, setUser }) {
     const location = useLocation()
+    const navigate = useNavigate()
+
+    function handleLogout() {
+        fetch("/logout", {
+            method: "DELETE"
+        }).then((r) => {
+            if (r.ok) {
+                setUser(null)
+                navigate("/")
+            }
+        });
+    }
 
     return (
         <Navbar>
@@ -14,11 +27,17 @@ function NavBar() {
                         The Inconvienence Store
                     </div>
                 </Link>
-                <Link to={location.pathname === "/" ? "/signup" : "/"}>
+                {!user ?
+                    <Link to={location.pathname === "/" ? "/signup" : "/"}>
+                        <div>
+                            {location.pathname === "/" ? "Sign Up" : "Login"}
+                        </div>
+                    </Link>
+                    :
                     <div>
-                        {location.pathname === "/" ? "Sign Up" : "Login"}
-                    </div>
-                </Link>
+                        <button className="account-button">Account</button>
+                        <button onClick={handleLogout} className="logout-button">Logout</button>
+                    </div>}
             </Container>
         </Navbar>
     )

@@ -1,0 +1,8 @@
+.logout-button, .account-button {
+    background: transparent;
+    border: none;
+}
+
+.logout-button:hover, .account-button:hover {
+    color: grey;
+}
