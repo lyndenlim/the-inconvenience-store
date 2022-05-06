@@ -3,11 +3,11 @@
     align-items: center;
     justify-content: center;
     height: 95vh;
-    /* overflow: hidden; */
 }
 
 .main-photo {
     width: 100%;
+    height: 95vh;
     object-fit: contain;
 }
 
@@ -15,6 +15,9 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+    height: 95vh;
+    overflow: auto;
 }
 
 .sub-photo {
@@ -36,4 +39,80 @@
 
 .quantity[type=number] {
     -moz-appearance: textfield;
+}
+
+.quantity {
+    width: 5ch;
+    text-align: center;
+}
+
+.add-to-cart {
+    background-color: #000;
+    background-image: none;
+    border: 1px solid #000;
+    border-radius: 4px;
+    box-shadow: #fff 4px 4px 0 0, #000 4px 4px 0 1px;
+    box-sizing: border-box;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 20px;
+    margin: 0 5px 10px 0;
+    overflow: visible;
+    padding: 12px 40px;
+    text-align: center;
+    text-transform: none;
+    touch-action: manipulation;
+    user-select: none;
+    -webkit-user-select: none;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+
+.add-to-cart:focus {
+    text-decoration: none;
+}
+
+.add-to-cart:hover {
+    text-decoration: none;
+}
+
+.add-to-cart:active {
+    box-shadow: rgba(0, 0, 0, .125) 0 3px 5px inset;
+    outline: 0;
+}
+
+.add-to-cart:not([disabled]):active {
+    box-shadow: #fff 2px 2px 0 0, #000 2px 2px 0 1px;
+    transform: translate(2px, 2px);
+}
+
+@media (min-width: 768px) {
+    .add-to-cart {
+        padding: 12px 50px;
+    }
+}
+
+.button-input-container {
+    width: fit-content;
+    display: flex;
+    align-items: center;
+}
+
+.button-container, .input-container {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.add-button, .minus-button {
+    background: transparent;
+    margin: 2.5px;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+.form-container {
+    width: fit-content;
 }

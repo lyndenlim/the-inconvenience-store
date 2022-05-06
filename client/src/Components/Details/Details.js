@@ -66,14 +66,26 @@ function Details({ user, setCartCount }) {
                 <h3>{`$${price}`}</h3>
                 <p>Category: {itemDetails.category}</p>
                 <p>{itemDetails.description}</p>
-                <form onSubmit={addToCart}>
-                    <input onChange={e => setQuantity(parseInt(e.target.value))} className="quantity" value={quantity} min="1" autoComplete="new-password" type="number" required />
-                    <button onClick={addQuantity} type="button">+</button>
-                    <button onClick={removeQuantity} type="button">-</button>
-                    <br />
-                    <br />
-                    <button type="submit">Add to cart</button>
-                </form>
+                <div className="form-container">
+                    <form onSubmit={addToCart}>
+                        <div className="button-input-container">
+                            <div className="input-container">
+                                <input onChange={e => setQuantity(parseInt(e.target.value))} className="quantity" value={quantity} min="1" max="999" autoComplete="new-password" type="number" readOnly required />
+                            </div>
+                            <div className="button-container">
+                                <div className="row">
+                                    <button className="add-button" onClick={addQuantity} type="button">+</button>
+                                </div>
+                                <div className="row">
+                                    <button className="minus-button" onClick={removeQuantity} type="button">-</button>
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+                        <br />
+                        <button className="add-to-cart" type="submit">Add to cart</button>
+                    </form>
+                </div>
             </div>
         </div>
     )
