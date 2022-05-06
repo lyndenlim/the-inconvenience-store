@@ -10,18 +10,18 @@ function Cart({ user, cartCount, setCartCount }) {
 
 
     useEffect(() => {
-        async function getOrders() {
+        async function getCart() {
             const data = await axios.get(`/users/${user.id}`)
-            setCartItems(data.data.orders)
+            setCartItems(data.data.carts)
         }
        
-        getOrders()
+        getCart()
     }, [isDeleted])
 
     function removeFromCart(id, quantity) {
         for (let i = 0; i < cartItems.length; i++) {
             if (cartItems[i].id === id) {
-                axios.delete(`/orders/${id}`)
+                axios.delete(`/carts/${id}`)
                     .then(() => {
                         setIsDeleted(isDeleted => !isDeleted)
                         setCartCount(cartCount => cartCount - quantity)

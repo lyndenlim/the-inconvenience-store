@@ -13,12 +13,12 @@ function NavBar({ user, setUser, setCartCount, cartCount }) {
     const navigate = useNavigate()
 
     useEffect(() => {
-        async function getOrders() {
+        async function getCart() {
             const data = await axios.get(`/users/${user.id}`)
-            setCartCount(data.data.orders.map(order => order.quantity).reduce((prev, current) => prev + current))
+            setCartCount(data.data.carts.map(cart => cart.quantity).reduce((prev, current) => prev + current))
         }
 
-        getOrders()
+        getCart()
     }, [])
 
     function handleLogout() {

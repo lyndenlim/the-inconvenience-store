@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_04_181747) do
+ActiveRecord::Schema.define(version: 2022_05_06_193857) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "carts", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "item_id"
+    t.bigint "quantity"
+    t.decimal "price"
+    t.decimal "total"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "items", force: :cascade do |t|
     t.string "name"
@@ -27,10 +37,20 @@ ActiveRecord::Schema.define(version: 2022_05_04_181747) do
 
   create_table "orders", force: :cascade do |t|
     t.bigint "user_id"
-    t.bigint "item_id"
-    t.bigint "quantity"
-    t.decimal "price"
-    t.decimal "total"
+    t.text "order", default: [], array: true
+    t.text "first_name"
+    t.text "last_name"
+    t.text "email"
+    t.text "address"
+    t.text "address2"
+    t.text "country"
+    t.text "city"
+    t.text "state"
+    t.bigint "postcode"
+    t.text "card_name"
+    t.bigint "card_number"
+    t.text "expiry_date"
+    t.bigint "security_code"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

@@ -37,7 +37,7 @@ function Details({ user, setCartCount }) {
 
     function addToCart(e) {
         e.preventDefault()
-        axios.post("/orders", {
+        axios.post("/carts", {
             user_id: user.id,
             item_id: id,
             quantity: quantity,

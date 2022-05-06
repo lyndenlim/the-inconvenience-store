@@ -1,7 +1,3 @@
 class OrderSerializer < ActiveModel::Serializer
-  attributes :id, :user_id, :item, :quantity, :price, :total
-
-  def items
-    self.object.item
-  end
+  attributes :user_id, :order, :first_name, :last_name, :email, :address, :address2, :country, :city, :state, :postcode, :card_name, :card_number, :expiry_date, :security_code
 end
