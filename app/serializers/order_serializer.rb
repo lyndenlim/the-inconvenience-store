@@ -1,6 +1,7 @@
 class OrderSerializer < ActiveModel::Serializer
-  attributes :id, :user_id, :item_id, :quantity, :total
+  attributes :id, :user_id, :item, :quantity, :price, :total
 
-  belongs_to :user
-  belongs_to :item
+  def items
+    self.object.item
+  end
 end

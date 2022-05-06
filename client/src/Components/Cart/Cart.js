@@ -1,27 +1,32 @@
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import "./Cart.css"
+import axios from "axios"
 
-function Cart({ setCartCount, cartCount, cartItems }) {
+function Cart({ user, cartCount }) {
     const [total, setTotal] = useState("")
     const navigate = useNavigate()
+    const [cartItems, setCartItems] = useState([])
 
     useEffect(() => {
+        async function getOrders() {
+            const data = await axios.get(`/users/${user.id}`)
+            setCartItems(data.data.orders)
+        }
         function getTotal() {
             if (cartItems.length > 0) {
                 setTotal(cartItems.map(item => parseFloat(item.price * item.quantity)).reduce((prev, current) => prev + current).toFixed(2))
             }
         }
 
+        getOrders()
         getTotal()
     }, [])
 
     function removeFromCart(id) {
         for (let i = 0; i < cartItems.length; i++) {
             if (cartItems[i].id === id) {
-                console.log(cartItems[i].quantity)
-                setCartCount(cartCount => cartCount - cartItems[i].quantity)
-                cartItems.splice(i, 1)
+                axios.delete(`/orders/${id}`)
             }
         }
     }
@@ -32,8 +37,8 @@ function Cart({ setCartCount, cartCount, cartItems }) {
                 {cartItems.map((item, index) => {
                     return (
                         <div className="cart-item-container" key={index}>
-                            <img className="cart-image" src={require(`../../photos/${item.photo}.jpeg`)} alt="cart" />
-                            <p className="cart-description">{item.name} x{item.quantity} - ${(item.price * item.quantity).toFixed(2)}</p>
+                            <img className="cart-image" src={require(`../../photos/${item.item.photos[0]}.jpeg`)} alt="cart" />
+                            <p className="cart-description">{item.item.name} x{item.quantity} - ${(item.price * item.quantity).toFixed(2)}</p>
                             <button onClick={() => removeFromCart(item.id)}>Delete</button>
                         </div>
                     )

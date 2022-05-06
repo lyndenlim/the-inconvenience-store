@@ -3,10 +3,10 @@ import { useParams } from "react-router-dom"
 import axios from "axios"
 import "./Details.css"
 
-function Details({ setCartCount, setCartItems, cartItems }) {
+function Details({ user, setCartCount }) {
     const { id } = useParams()
     const [itemDetails, setItemDetails] = useState("")
-    const [price, setPrice] = useState("")
+    const [price, setPrice] = useState(0)
     const [quantity, setQuantity] = useState(1)
     const [mainPhoto, setMainPhoto] = useState("")
     const [subPhotos, setSubPhotos] = useState([])
@@ -37,16 +37,17 @@ function Details({ setCartCount, setCartItems, cartItems }) {
 
     function addToCart(e) {
         e.preventDefault()
-        
-        // for (let i = 0; i < cartItems.length; i++) {
-        //     if (cartItems[i].id === id) {
-        //         cartItems[i].quantity += quantity
-        //     }
-        // }
-        
+        axios.post("/orders", {
+            user_id: user.id,
+            item_id: id,
+            quantity: quantity,
+            price: price,
+            total: price * quantity
+        })
+            .then(res => console.log(res))
+
         setCartCount(cartCount => cartCount + quantity)
         setQuantity(1)
-        setCartItems([...cartItems, { id: id, name: itemDetails.name, quantity: quantity, photo: mainPhoto, price: itemDetails.price }])
     }
 
     return (

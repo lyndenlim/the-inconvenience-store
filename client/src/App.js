@@ -12,7 +12,6 @@ import CheckoutPage from "./Components/CheckoutPage/CheckoutPage";
 function App() {
   const [user, setUser] = useState("")
   const [cartCount, setCartCount] = useState(0)
-  const [cartItems, setCartItems] = useState([])
 
   useEffect(() => {
     fetch("/me")
@@ -22,18 +21,18 @@ function App() {
             .then(user => setUser(user));
         }
       })
-  }, [cartItems])
+  }, [cartCount])
 
 
   return (
     <div className="App">
-      <NavBar user={user} setUser={setUser} cartCount={cartCount} />
+      <NavBar user={user} setUser={setUser} setCartCount={setCartCount} cartCount={cartCount} />
       <Routes>
         <Route path="/" element={<Login setUser={setUser} />} />
         <Route path="/homepage" element={<HomePage />} />
         <Route path="/signup" element={<Signup setUser={setUser} />} />
-        <Route path="/items/:id" element={<Details setCartCount={setCartCount} setCartItems={setCartItems} cartItems={cartItems} />} />
-        <Route path="/cart" element={<Cart setCartCount={setCartCount} cartCount={cartCount} cartItems={cartItems} />} />
+        <Route path="/items/:id" element={<Details user={user} setCartCount={setCartCount} />} />
+        <Route path="/cart" element={<Cart user={user} cartCount/>} />
         <Route path="/account" element={<AccountPage user={user} />} />
         <Route path="/checkout" element={<CheckoutPage user={user} />} />
       </Routes>

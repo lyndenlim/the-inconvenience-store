@@ -5,10 +5,21 @@ import Container from "react-bootstrap/Container"
 import { Link, useNavigate, useLocation } from "react-router-dom"
 import Badge from "@mui/material/Badge"
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart"
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
-function NavBar({ user, setUser, cartCount }) {
+function NavBar({ user, setUser, setCartCount, cartCount }) {
     const location = useLocation()
     const navigate = useNavigate()
+
+    useEffect(() => {
+        async function getOrders() {
+            const data = await axios.get(`/users/${user.id}`)
+            setCartCount(data.data.orders.map(order => order.quantity).reduce((prev, current) => prev + current))
+        }
+
+        getOrders()
+    }, [])
 
     function handleLogout() {
         fetch("/logout", {
