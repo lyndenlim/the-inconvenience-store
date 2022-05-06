@@ -4,7 +4,6 @@ import "./Cart.css"
 import axios from "axios"
 
 function Cart({ user, cartCount, setCartCount }) {
-    const [total, setTotal] = useState("")
     const navigate = useNavigate()
     const [cartItems, setCartItems] = useState([])
     const [isDeleted, setIsDeleted] = useState(false)
@@ -15,14 +14,8 @@ function Cart({ user, cartCount, setCartCount }) {
             const data = await axios.get(`/users/${user.id}`)
             setCartItems(data.data.orders)
         }
-        function getTotal() {
-            if (cartItems.length > 0) {
-                setTotal(cartItems.map(item => parseFloat(item.price * item.quantity)).reduce((prev, current) => prev + current).toFixed(2))
-            }
-        }
-
+       
         getOrders()
-        getTotal()
     }, [isDeleted])
 
     function removeFromCart(id, quantity) {
@@ -54,7 +47,7 @@ function Cart({ user, cartCount, setCartCount }) {
             {cartItems.length > 0 ?
                 <div className="col-6 cart-total">
                     <p>You have {cartCount} items.</p>
-                    <p>Cart Total: ${total}</p>
+                    <p>Cart Total: ${cartItems.map(item => parseFloat(item.price * item.quantity)).reduce((prev, current) => prev + current).toFixed(2)}</p>
                     <button onClick={() => navigate("/checkout")}>Checkout</button>
                 </div>
                 :
