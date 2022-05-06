@@ -3,10 +3,12 @@ import { useNavigate } from "react-router-dom"
 import "./Cart.css"
 import axios from "axios"
 
-function Cart({ user, cartCount }) {
+function Cart({ user, cartCount, setCartCount }) {
     const [total, setTotal] = useState("")
     const navigate = useNavigate()
     const [cartItems, setCartItems] = useState([])
+    const [isDeleted, setIsDeleted] = useState(false)
+
 
     useEffect(() => {
         async function getOrders() {
@@ -21,12 +23,16 @@ function Cart({ user, cartCount }) {
 
         getOrders()
         getTotal()
-    }, [])
+    }, [isDeleted])
 
-    function removeFromCart(id) {
+    function removeFromCart(id, quantity) {
         for (let i = 0; i < cartItems.length; i++) {
             if (cartItems[i].id === id) {
                 axios.delete(`/orders/${id}`)
+                    .then(() => {
+                        setIsDeleted(isDeleted => !isDeleted)
+                        setCartCount(cartCount => cartCount - quantity)
+                    })
             }
         }
     }
@@ -39,7 +45,7 @@ function Cart({ user, cartCount }) {
                         <div className="cart-item-container" key={index}>
                             <img className="cart-image" src={require(`../../photos/${item.item.photos[0]}.jpeg`)} alt="cart" />
                             <p className="cart-description">{item.item.name} x{item.quantity} - ${(item.price * item.quantity).toFixed(2)}</p>
-                            <button onClick={() => removeFromCart(item.id)}>Delete</button>
+                            <button onClick={() => removeFromCart(item.id, item.quantity)}>Delete</button>
                         </div>
                     )
                 }
