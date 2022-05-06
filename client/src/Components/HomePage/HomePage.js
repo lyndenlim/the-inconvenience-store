@@ -20,69 +20,69 @@ function HomePage() {
       setItemArray(data.data.map(item => item))    
     }
 
-    allCategory.current.classList.add("active")
+    allCategory.current.classList.add("selected-category")
 
     getAllItems()
   }, [])
 
   function sortByAll() {
     setItemArray(items.map(item => item))
-    allCategory.current.classList.add("active")
-    kitchenCategory.current.classList.remove("active")
-    rainCategory.current.classList.remove("active")
-    securityCategory.current.classList.remove("active")
-    personalsCategory.current.classList.remove("active")
-    otherCategory.current.classList.remove("active")
+    allCategory.current.classList.add("selected-category")
+    kitchenCategory.current.classList.remove("selected-category")
+    rainCategory.current.classList.remove("selected-category")
+    securityCategory.current.classList.remove("selected-category")
+    personalsCategory.current.classList.remove("selected-category")
+    otherCategory.current.classList.remove("selected-category")
   }
   
   function sortByKitchen() {
     setItemArray(items.filter(item => item.category === "kitchen"))
-    kitchenCategory.current.classList.add("active")
-    allCategory.current.classList.remove("active")
-    rainCategory.current.classList.remove("active")
-    securityCategory.current.classList.remove("active")
-    personalsCategory.current.classList.remove("active")
-    otherCategory.current.classList.remove("active")
+    kitchenCategory.current.classList.add("selected-category")
+    allCategory.current.classList.remove("selected-category")
+    rainCategory.current.classList.remove("selected-category")
+    securityCategory.current.classList.remove("selected-category")
+    personalsCategory.current.classList.remove("selected-category")
+    otherCategory.current.classList.remove("selected-category")
   }
 
   function sortByRain() {
-    setItemArray(items.filter(item => item.category === "rainy days"))
-    rainCategory.current.classList.add("active")
-    kitchenCategory.current.classList.remove("active")
-    allCategory.current.classList.remove("active")
-    securityCategory.current.classList.remove("active")
-    personalsCategory.current.classList.remove("active")
-    otherCategory.current.classList.remove("active")
+    setItemArray(items.filter(item => item.category === "weather"))
+    rainCategory.current.classList.add("selected-category")
+    kitchenCategory.current.classList.remove("selected-category")
+    allCategory.current.classList.remove("selected-category")
+    securityCategory.current.classList.remove("selected-category")
+    personalsCategory.current.classList.remove("selected-category")
+    otherCategory.current.classList.remove("selected-category")
   }
 
   function sortBySecurity() {
     setItemArray(items.filter(item => item.category === "home security"))
-    securityCategory.current.classList.add("active")
-    rainCategory.current.classList.remove("active")
-    kitchenCategory.current.classList.remove("active")
-    allCategory.current.classList.remove("active")
-    personalsCategory.current.classList.remove("active")
-    otherCategory.current.classList.remove("active")
+    securityCategory.current.classList.add("selected-category")
+    rainCategory.current.classList.remove("selected-category")
+    kitchenCategory.current.classList.remove("selected-category")
+    allCategory.current.classList.remove("selected-category")
+    personalsCategory.current.classList.remove("selected-category")
+    otherCategory.current.classList.remove("selected-category")
   }
 
   function sortByPersonals() {
     setItemArray(items.filter(item => item.category === "personals"))
-    personalsCategory.current.classList.add("active")
-    rainCategory.current.classList.remove("active")
-    kitchenCategory.current.classList.remove("active")
-    allCategory.current.classList.remove("active")
-    securityCategory.current.classList.remove("active")
-    otherCategory.current.classList.remove("active")
+    personalsCategory.current.classList.add("selected-category")
+    rainCategory.current.classList.remove("selected-category")
+    kitchenCategory.current.classList.remove("selected-category")
+    allCategory.current.classList.remove("selected-category")
+    securityCategory.current.classList.remove("selected-category")
+    otherCategory.current.classList.remove("selected-category")
   }
 
   function sortByOther() {
     setItemArray(items.filter(item => item.category === "other"))
-    otherCategory.current.classList.add("active")
-    rainCategory.current.classList.remove("active")
-    kitchenCategory.current.classList.remove("active")
-    allCategory.current.classList.remove("active")
-    securityCategory.current.classList.remove("active")
-    personalsCategory.current.classList.remove("active")
+    otherCategory.current.classList.add("selected-category")
+    rainCategory.current.classList.remove("selected-category")
+    kitchenCategory.current.classList.remove("selected-category")
+    allCategory.current.classList.remove("selected-category")
+    securityCategory.current.classList.remove("selected-category")
+    personalsCategory.current.classList.remove("selected-category")
   }
 
   return (
@@ -94,8 +94,8 @@ function HomePage() {
         <button id="kitchen" onClick={sortByKitchen} className="category" ref={kitchenCategory}>
           Kitchen
         </button>
-        <button id="rainydays" onClick={sortByRain} className="category" ref={rainCategory}>
-          Rainy Days
+        <button id="weather" onClick={sortByRain} className="category" ref={rainCategory}>
+          Weather
         </button>
         <button id="homesecurity" onClick={sortBySecurity} className="category" ref={securityCategory}>
           Home Security

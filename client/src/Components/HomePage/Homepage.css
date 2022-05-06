@@ -10,18 +10,24 @@
     background: transparent;
     border: none;
     font-size: 30px;
+    opacity: 0.5;
 }
 
 .category:hover {
-    color: #0c6efd;
+    color: black;
+    opacity: 1;
 }
 
 .category-container {
     text-align: center;
 }
 
-.active {
-    color: #0c6efd;
+.selected-category {
+    border-bottom: 3px solid black;
+    padding-bottom: 1px;
+    color: black;
+    opacity: 1;
+    font-weight: bold;
 }
 
 .homepage-container {

@@ -1,7 +1,7 @@
 Item.create(name: "Broom", price: 10.00, category: "other", description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
 molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum
 numquam blanditiis harum quisquam eius", photos: ["broom1", "broom2", "broom3", "broom4"])
-Item.create(name: "Thick Buttons", price: 1.00, category: "personals", description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
+Item.create(name: "Buttons", price: 1.00, category: "personals", description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
 molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum
 numquam blanditiis harum quisquam eius", photos: ["buttons"])
 Item.create(name: "Chain Fork", price: 3.50, category: "kitchen", description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
@@ -10,7 +10,7 @@ numquam blanditiis harum quisquam eius", photos: ["chain_fork1", "chain_fork2"])
 Item.create(name: "Chair", price: 35.00, category: "other", description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
 molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum
 numquam blanditiis harum quisquam eius", photos: ["chair1", "chair2", "chair3", "chair4"])
-Item.create(name: "Champagne Glass", price: 200.00, category: "other", description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
+Item.create(name: "Champagne Glass", price: 200.00, category: "kitchen", description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
 molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum
 numquam blanditiis harum quisquam eius", photos: ["champagne_glass"])
 Item.create(name: "Coffee Pot", price: 50.00, category: "kitchen", description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
@@ -28,7 +28,7 @@ numquam blanditiis harum quisquam eius", photos: ["glasses"])
 Item.create(name: "Inflatable Doorknob", price: 24.99, category: "home security", description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
 molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum
 numquam blanditiis harum quisquam eius", photos: ["inflatable_doorknob"])
-Item.create(name: "Inflatable Paddle", price: 15.00, category: "rainy days", description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
+Item.create(name: "Inflatable Paddle", price: 15.00, category: "weather", description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
 molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum
 numquam blanditiis harum quisquam eius", photos: ["inflatable_paddle"])
 Item.create(name: "Key", price: 2.99, category: "home security", description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
@@ -46,7 +46,7 @@ numquam blanditiis harum quisquam eius", photos: ["mugs1", "mugs2", "mugs3"])
 Item.create(name: "Pot", price: 30.00, category: "kitchen", description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
 molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum
 numquam blanditiis harum quisquam eius", photos: ["pot1", "pot2", "pot3"])
-Item.create(name: "Rain Boots", price: 100.00, category: "rainy days", description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
+Item.create(name: "Rain Boots", price: 100.00, category: "weather", description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
 molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum
 numquam blanditiis harum quisquam eius", photos: ["rainboots"])
 Item.create(name: "Ruler", price: 3.00, category: "other", description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
@@ -76,7 +76,7 @@ numquam blanditiis harum quisquam eius", photos: ["thick_cutlery_set1", "thick_c
 Item.create(name: "Toothbrush", price: 2.00, category: "personals", description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
 molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum
 numquam blanditiis harum quisquam eius", photos: ["toothbrush"])
-Item.create(name: "Concrete Umbrella", price: 49.99, category: "rainy days", description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
+Item.create(name: "Umbrella", price: 49.99, category: "weather", description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
 molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum
 numquam blanditiis harum quisquam eius", photos: ["umbrella"])
 Item.create(name: "Watering Can", price: 9.99, category: "other", description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,

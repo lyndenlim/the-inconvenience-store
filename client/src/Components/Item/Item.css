@@ -7,11 +7,11 @@
 .photo-container {
     height: 350px;
     width: 370px;
-    margin: 12px;   
+    margin: 12px;
 }
 
 .photo:hover {
-    opacity: 0.5;
+    opacity: 0.3;
 }
 
 .photo:hover + .name {
@@ -19,5 +19,18 @@
 }
 
 .name {
+    position: absolute;
     visibility: hidden;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 30px;
+    font-weight: bold;
+    width: fit-content;
+    color: black;
+    z-index: -1;
+}
+
+.item-content {
+    position: relative;
 }
