@@ -93,7 +93,7 @@
     .success {
         display: block;
         font-weight: 500;
-        font-size: 14px;
+        font-size: 18px;
         line-height: 24px;
         opacity: var(--o, 1);
         transition: opacity .3s;
@@ -309,7 +309,6 @@ html {
 }
 
 .truck-button-container {
-    // margin-top:10px;
     margin-bottom:10px;
     text-align: center;
 }
