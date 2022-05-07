@@ -43,7 +43,6 @@ ActiveRecord::Schema.define(version: 2022_05_06_193857) do
     t.text "email"
     t.text "address"
     t.text "address2"
-    t.text "country"
     t.text "city"
     t.text "state"
     t.bigint "postcode"

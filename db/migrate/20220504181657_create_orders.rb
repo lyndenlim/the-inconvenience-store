@@ -8,7 +8,6 @@ class CreateOrders < ActiveRecord::Migration[6.1]
       t.text :email
       t.text :address
       t.text :address2
-      t.text :country
       t.text :city
       t.text :state
       t.bigint :postcode
