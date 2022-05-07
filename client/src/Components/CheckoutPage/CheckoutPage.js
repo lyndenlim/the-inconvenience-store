@@ -65,7 +65,7 @@ function CheckoutPage({ user, setCartCount, orderNumber, setOrderNumber }) {
                     axios.delete("/clear")
                     .then(() => {
                         setCartCount(0)
-                        navigate("/success")
+                        navigate("/ordersummary")
                     })
                 } else {
                     alert("Error!")

@@ -1,7 +1,13 @@
-.order-confirmation-container {
+.order-summary-container {
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
     height: 80vh;
+    width: fit-content;
+}
+
+.order-summary {
+    margin:auto;
+    width: 50%;
 }

@@ -8,7 +8,7 @@ import Signup from "./Components/Signup/Signup";
 import Cart from "./Components/Cart/Cart";
 import AccountPage from "./Components/AccountPage/AccountPage";
 import CheckoutPage from "./Components/CheckoutPage/CheckoutPage";
-import OrderConfirmation from "./Components/OrderConfirmation/OrderConfirmation";
+import OrderSummary from "./Components/OrderSummary/OrderSummary";
 
 function App() {
   const [user, setUser] = useState("")
@@ -37,7 +37,7 @@ function App() {
         <Route path="/cart" element={<Cart user={user} cartCount={cartCount} setCartCount={setCartCount} />} />
         <Route path="/account" element={<AccountPage user={user} />} />
         <Route path="/checkout" element={<CheckoutPage user={user} setCartCount={setCartCount} orderNumber={orderNumber} setOrderNumber={setOrderNumber} />} />
-        <Route path="/success" element={<OrderConfirmation user={user} orderNumber={orderNumber} />} />
+        <Route path="/ordersummary" element={<OrderSummary user={user} orderNumber={orderNumber} />} />
       </Routes>
     </div>
   );

@@ -1,9 +1,9 @@
-import "./OrderConfirmation.css"
+import "./OrderSummary.css"
 
-function OrderConfirmation({ user, orderNumber }) { 
+function OrderSummary({ user, orderNumber }) { 
     return (
-        <div className="order-confirmation-container">
-            <div>
+        <div className="order-summary-container">
+            <div className="order-summary">
                 <h1>Thanks for your order!</h1>
                 <h3>Order #{orderNumber}</h3>
                 <p>Please check your email for an order confirmation.</p>
@@ -13,4 +13,4 @@ function OrderConfirmation({ user, orderNumber }) {
     )
 }
 
-export default OrderConfirmation
+export default OrderSummary
