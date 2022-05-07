@@ -7,6 +7,16 @@ function AccountPage({ user }) {
     const [oldPassword, setOldPassword] = useState("")
     const [newPassword, setNewPassword] = useState("")
     const [passwordConfirmation, setPasswordConfirmation] = useState("")
+    const [orders, setOrders] = useState([])
+
+    useEffect(() => {
+        async function getOrderInfo() {
+            const data = await axios.get(`users/${user.id}`)
+            setOrders(data.data.orders)
+        }
+
+        getOrderInfo()
+    }, [])
 
     function changeEmail(e) {
         e.preventDefault();
@@ -31,12 +41,19 @@ function AccountPage({ user }) {
     }
 
     return (
-        <div className="row account-container">
-            <div className="col-6 orders">
-                Orders here
+        <>
+            <div className="row orders">
+                {orders.length > 0 ? orders.map((order, index) => {
+                    return (
+                        <div className="orders" key={index}>
+                            <p>Order Placed {order.order_date.replaceAll("-", "/")}</p>
+                            <p>{order.all_items}</p>
+                        </div>
+                    )
+                }) : <h3><strong>You haven't made any order yet.</strong></h3>}
             </div>
-            <div className="col-6 settings">
-                {user.email}
+            <div className="row settings">
+                <span>{user.email}</span>
                 <br />
                 <form onSubmit={changeEmail}>
                     <input onChange={e => setNewEmail(e.target.value)} value={newEmail} placeholder="New Email" required />
@@ -53,7 +70,7 @@ function AccountPage({ user }) {
                     <button type="submit">Change Password</button>
                 </form>
             </div>
-        </div>
+        </>
     )
 }
 
