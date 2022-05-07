@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(version: 2022_05_06_193857) do
 
   create_table "orders", force: :cascade do |t|
     t.bigint "user_id"
-    t.text "order", default: [], array: true
+    t.text "all_items", default: [], array: true
     t.text "first_name"
     t.text "last_name"
     t.text "email"
@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(version: 2022_05_06_193857) do
     t.bigint "card_number"
     t.text "expiry_date"
     t.bigint "security_code"
+    t.bigint "order_number"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

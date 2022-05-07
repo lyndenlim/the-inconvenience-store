@@ -16,4 +16,9 @@ class CartsController < ApplicationController
     Cart.find(params[:id]).destroy
     head :no_content
   end
+
+  def clear
+    Cart.destroy_all
+    head :no_content
+  end
 end

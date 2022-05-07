@@ -1,8 +1,10 @@
 import "./CheckoutPage.css"
 import axios from "axios"
 import { useEffect, useState } from "react"
+import { useNavigate } from "react-router-dom"
 
-function CheckoutPage({ user }) {
+function CheckoutPage({ user, setCartCount, orderNumber, setOrderNumber }) {
+    const navigate = useNavigate()
     const [orderDetails, setOrderDetails] = useState([])
     const [priceArray, setPriceArray] = useState([])
     const [firstName, setFirstName] = useState("")
@@ -26,15 +28,24 @@ function CheckoutPage({ user }) {
             setPriceArray(data.data.carts.map(item => parseFloat(item.total)))
         }
 
+        function getOrderNumber() {
+            let randomNumber = ""
+            for (let i = 0; i < 9; i++) {
+                randomNumber += Math.floor(Math.random() * 10)
+            }
+            setOrderNumber(randomNumber)
+        }
+
         getOrderDetails()
+        getOrderNumber()
     }, [])
 
     function placeOrder(e) {
         e.preventDefault()
         axios.post("/orders", {
             user_id: user.id,
-            order: orderDetails,
-            firstName: firstName,
+            all_items: orderDetails,
+            first_name: firstName,
             last_name: lastName,
             email: email,
             address: address,
@@ -47,9 +58,22 @@ function CheckoutPage({ user }) {
             card_number: cardNumber,
             expiry_date: expiryDate,
             security_code: securityCode,
+            order_number: orderNumber
         })
-            .then(res => console.log(res))
+            .then(res => {
+                if (res.status === 201) {
+                    axios.delete("/clear")
+                    .then(() => {
+                        setCartCount(0)
+                        navigate("/success")
+                    })
+                } else {
+                    alert("Error!")
+                }
+            })
     }
+
+
 
     return (
         <div className="row checkout-container">
