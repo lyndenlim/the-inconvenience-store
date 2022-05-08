@@ -1,6 +1,10 @@
 import "./AccountPage.css"
 import { useState, useEffect } from "react"
 import axios from "axios"
+import ListGroup from "react-bootstrap/ListGroup"
+import Modal from "react-bootstrap/Modal"
+import Button from "react-bootstrap/Button"
+import Form from "react-bootstrap/Form"
 
 function AccountPage({ user }) {
     const [newEmail, setNewEmail] = useState("")
@@ -8,6 +12,14 @@ function AccountPage({ user }) {
     const [newPassword, setNewPassword] = useState("")
     const [passwordConfirmation, setPasswordConfirmation] = useState("")
     const [orders, setOrders] = useState([])
+    const [showEmail, setShowEmail] = useState(false);
+    const [showPassword, setShowPassword] = useState(false);
+
+    const handleCloseEmail = () => setShowEmail(false);
+    const handleShowEmail = () => setShowEmail(true);
+    const handleClosePassword = () => setShowPassword(false);
+    const handleShowPassword = () => setShowPassword(true);
+
 
     useEffect(() => {
         async function getOrderInfo() {
@@ -37,40 +49,91 @@ function AccountPage({ user }) {
                 setOldPassword("")
                 setNewPassword("")
                 setPasswordConfirmation("")
+                handleClosePassword()
             })
     }
 
     return (
-        <>
-            <div className="row orders">
-                {orders.length > 0 ? orders.map((order, index) => {
-                    return (
-                        <div className="orders" key={index}>
-                            <p>Order Placed {order.order_date.replaceAll("-", "/")}</p>
-                            <p>{order.all_items}</p>
-                        </div>
-                    )
-                }) : <h3><strong>You haven't made any order yet.</strong></h3>}
-            </div>
+        <div className="settings-container">
+            {orders.length > 0 ?
+                <div className="row orders">
+                    <h2>Order History</h2>
+                    {orders.map((order, index) => {
+                        return (
+                            <div className="orders" key={index}>
+                                <p>Order Placed {order.order_date.replaceAll("-", "/")}</p>
+                                <p>{order.all_items}</p>
+                                <hr />
+                            </div>
+
+                        )
+                    })}
+                </div> : <h3><strong>You haven't made any orders yet.</strong></h3>}
             <div className="row settings">
-                <span>{user.email}</span>
-                <br />
-                <form onSubmit={changeEmail}>
-                    <input onChange={e => setNewEmail(e.target.value)} value={newEmail} placeholder="New Email" required />
-                    <button type="submit">Change Email</button>
-                </form>
-                <br />
-                <form onSubmit={changePassword}>
-                    <input onChange={e => setOldPassword(e.target.value)} value={oldPassword} placeholder="Old Password" type="password" required autoComplete="new-password" />
-                    <br />
-                    <input onChange={e => setNewPassword(e.target.value)} value={newPassword} placeholder="New Password" type="password" required autoComplete="new-password" />
-                    <br />
-                    <input onChange={e => setPasswordConfirmation(e.target.value)} value={passwordConfirmation} placeholder="Confirm Password" type="password" required autoComplete="new-password" />
-                    <br />
-                    <button type="submit">Change Password</button>
-                </form>
+                <h3>Login & Security</h3>
+                <ListGroup>
+                    <ListGroup.Item>
+                        <div className="email-edit-container">
+                            <label><strong>Email:</strong></label>
+                            <button className="settings-edit-button" onClick={handleShowEmail}>Edit</button>
+                        </div>
+                        <p>{user.email}</p>
+                    </ListGroup.Item>
+                    <ListGroup.Item>
+                        <div className="password-edit-container">
+                            <label><strong>Password:</strong></label>
+                            <button className="settings-edit-button" onClick={handleShowPassword}>Edit</button>
+                        </div>
+                        <p>********</p>
+                    </ListGroup.Item>
+                </ListGroup>
             </div>
-        </>
+            <Modal show={showEmail} onHide={handleCloseEmail} centered>
+                <form onSubmit={changeEmail}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>Change your email address</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <Form.Label>New Email</Form.Label>
+                        <Form.Control onChange={e => setNewEmail(e.target.value)} value={newEmail} placeholder="New Email" required />
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="primary" type="submit">
+                            Save Changes
+                        </Button>
+                        <Button variant="secondary" onClick={handleCloseEmail}>
+                            Close
+                        </Button>
+                    </Modal.Footer>
+                </form>
+            </Modal>
+            <Modal show={showPassword} onHide={handleClosePassword} centered>
+                <form onSubmit={changePassword}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>Change your password</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <Form.Label>Current Password</Form.Label>
+                        <Form.Control onChange={e => setOldPassword(e.target.value)} value={oldPassword} placeholder="Current Password" type="password" required autoComplete="new-password" />
+                        <br />
+                        <Form.Label>New Password</Form.Label>
+                        <Form.Control onChange={e => setNewPassword(e.target.value)} value={newPassword} placeholder="New Password" type="password" required autoComplete="new-password" />
+                        <br />
+                        <Form.Label>Confirm New Password</Form.Label>
+                        <Form.Control onChange={e => setPasswordConfirmation(e.target.value)} value={passwordConfirmation} placeholder="Confirm Password" type="password" required autoComplete="new-password" />
+                        <br />
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="primary" type="submit">
+                            Save Changes
+                        </Button>
+                        <Button variant="secondary" onClick={handleClosePassword}>
+                            Close
+                        </Button>
+                    </Modal.Footer>
+                </form>
+            </Modal>
+        </div>
     )
 }
 
