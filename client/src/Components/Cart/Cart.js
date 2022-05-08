@@ -2,12 +2,13 @@ import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import "./Cart.css"
 import axios from "axios"
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Cart({ user, cartCount, setCartCount }) {
     const navigate = useNavigate()
     const [cartItems, setCartItems] = useState([])
     const [isDeleted, setIsDeleted] = useState(false)
-
 
     useEffect(() => {
         async function getCart() {
@@ -22,9 +23,30 @@ function Cart({ user, cartCount, setCartCount }) {
         for (let i = 0; i < cartItems.length; i++) {
             if (cartItems[i].id === id) {
                 axios.delete(`/carts/${id}`)
-                    .then(() => {
-                        setIsDeleted(isDeleted => !isDeleted)
-                        setCartCount(cartCount => cartCount - quantity)
+                    .then(res => {
+                        if (res.status === 204) {
+                            toast.success(`${quantity} ${cartItems[i].item.name.toLowerCase()} removed from cart.`, {
+                                position: "bottom-right",
+                                autoClose: 4000,
+                                hideProgressBar: false,
+                                closeOnClick: true,
+                                pauseOnHover: false,
+                                draggable: true,
+                                progress: undefined,
+                            })
+                            setIsDeleted(isDeleted => !isDeleted)
+                            setCartCount(cartCount => cartCount - quantity)
+                        } else {
+                            toast.error('Something went wrong, please try again later.', {
+                                position: "bottom-right",
+                                autoClose: 4000,
+                                hideProgressBar: false,
+                                closeOnClick: true,
+                                pauseOnHover: false,
+                                draggable: true,
+                                progress: undefined,
+                            });
+                        }
                     })
             }
         }
@@ -82,7 +104,17 @@ function Cart({ user, cartCount, setCartCount }) {
                     <h1>Your Cart is Empty</h1>
                 </div>
             }
-
+            <ToastContainer
+                position="bottom-right"
+                autoClose={4000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss={false}
+                draggable
+                pauseOnHover={false}
+            />
         </div>
     )
 }

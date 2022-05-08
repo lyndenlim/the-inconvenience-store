@@ -1,7 +1,7 @@
 Item.create(name: "Broom", price: 10.00, category: "other", description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
 molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum
 numquam blanditiis harum quisquam eius", photos: ["broom1", "broom2", "broom3", "broom4"])
-Item.create(name: "Buttons", price: 1.00, category: "personals", description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
+Item.create(name: "Button", price: 0.25, category: "personals", description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
 molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum
 numquam blanditiis harum quisquam eius", photos: ["buttons"])
 Item.create(name: "Chain Fork", price: 3.50, category: "kitchen", description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,

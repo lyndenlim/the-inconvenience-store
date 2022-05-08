@@ -5,6 +5,8 @@ import ListGroup from "react-bootstrap/ListGroup"
 import Modal from "react-bootstrap/Modal"
 import Button from "react-bootstrap/Button"
 import Form from "react-bootstrap/Form"
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function AccountPage({ user }) {
     const [newEmail, setNewEmail] = useState("")
@@ -35,7 +37,31 @@ function AccountPage({ user }) {
         axios.patch(`/users/${user.id}`, {
             email: newEmail
         })
-            .then(res => setNewEmail(""))
+            .then(res => {
+                if (res.status === 200) {
+                    toast.success("Email successfully updated!", {
+                        position: "bottom-right",
+                        autoClose: 4000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: false,
+                        draggable: true,
+                        progress: undefined,
+                    });
+                    setNewEmail("")
+                    handleCloseEmail()
+                } else {
+                    toast.error('Something went wrong, please try again later.', {
+                        position: "bottom-right",
+                        autoClose: 4000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: false,
+                        draggable: true,
+                        progress: undefined,
+                    });
+                }
+            })
     }
 
     function changePassword(e) {
@@ -46,10 +72,31 @@ function AccountPage({ user }) {
             password_confirmation: passwordConfirmation
         })
             .then(res => {
-                setOldPassword("")
-                setNewPassword("")
-                setPasswordConfirmation("")
-                handleClosePassword()
+                if (res.status === 200) {
+                    toast.success("Password successfully updated!", {
+                        position: "bottom-right",
+                        autoClose: 4000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: false,
+                        draggable: true,
+                        progress: undefined,
+                    });
+                    setOldPassword("")
+                    setNewPassword("")
+                    setPasswordConfirmation("")
+                    handleClosePassword()
+                } else {
+                    toast.error('Something went wrong, please try again later.', {
+                        position: "bottom-right",
+                        autoClose: 4000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: false,
+                        draggable: true,
+                        progress: undefined,
+                    });
+                }
             })
     }
 
@@ -133,6 +180,17 @@ function AccountPage({ user }) {
                     </Modal.Footer>
                 </form>
             </Modal>
+            <ToastContainer
+                position="bottom-right"
+                autoClose={4000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss={false}
+                draggable
+                pauseOnHover={false}
+            />
         </div>
     )
 }

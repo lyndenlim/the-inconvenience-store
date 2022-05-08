@@ -8,7 +8,6 @@ import Col from "react-bootstrap/Col"
 import Row from "react-bootstrap/Row"
 import gsap from "gsap"
 
-
 function CheckoutPage({ user, setCartCount, orderNumber, setOrderNumber }) {
     const navigate = useNavigate()
     const [orderDetails, setOrderDetails] = useState([])
@@ -187,7 +186,7 @@ function CheckoutPage({ user, setCartCount, orderNumber, setOrderNumber }) {
         <div className="row checkout-container">
             <div className="col-7 customer-info" >
 
-                <form onSubmit={placeOrder}>
+                <Form onSubmit={placeOrder}>
                     <h2>Shipping Information</h2>
                     <Row>
                         <Col>
@@ -259,7 +258,7 @@ function CheckoutPage({ user, setCartCount, orderNumber, setOrderNumber }) {
                             </div>
                         </button>
                     </div>
-                </form>
+                </Form>
             </div>
             <div className="col-5 summary-container">
                 <div className="summary">

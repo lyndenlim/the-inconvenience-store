@@ -2,6 +2,9 @@ import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import axios from "axios"
 import "./Details.css"
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 function Details({ user, setCartCount }) {
     const { id } = useParams()
@@ -44,7 +47,29 @@ function Details({ user, setCartCount }) {
             price: price,
             total: price * quantity
         })
-            .then(res => console.log(res))
+            .then(res => {
+                if (res.status === 201) {
+                    toast.success(`${quantity} ${itemDetails.name.toLowerCase()} added to cart.`, {
+                        position: "bottom-right",
+                        autoClose: 4000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: false,
+                        draggable: true,
+                        progress: undefined,
+                    });
+                } else {
+                    toast.error('Something went wrong, please try again later.', {
+                        position: "bottom-right",
+                        autoClose: 4000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: false,
+                        draggable: true,
+                        progress: undefined,
+                    });
+                }
+            })
 
         setCartCount(cartCount => cartCount + quantity)
         setQuantity(1)
@@ -87,6 +112,17 @@ function Details({ user, setCartCount }) {
                     </form>
                 </div>
             </div>
+            <ToastContainer
+                position="bottom-right"
+                autoClose={4000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss={false}
+                draggable
+                pauseOnHover={false}
+            />
         </div>
     )
 }
