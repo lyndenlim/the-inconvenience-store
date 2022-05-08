@@ -32,7 +32,7 @@ function Cart({ user, cartCount, setCartCount }) {
 
     return (
         <div className="row col-container">
-            <h2>Shopping Cart</h2>
+            {cartItems.length > 0 ? <h2>Shopping Cart</h2> : null}
             <div className="col-8 cart-items">
                 {cartItems.map((item, index) => {
                     return (

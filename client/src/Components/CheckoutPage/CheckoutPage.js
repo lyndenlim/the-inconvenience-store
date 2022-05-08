@@ -187,7 +187,7 @@ function CheckoutPage({ user, setCartCount, orderNumber, setOrderNumber }) {
         <div className="row checkout-container">
             <div className="col-7 customer-info" >
 
-                <Form onSubmit={placeOrder}>
+                <form onSubmit={placeOrder}>
                     <h2>Shipping Information</h2>
                     <Row>
                         <Col>
@@ -259,7 +259,7 @@ function CheckoutPage({ user, setCartCount, orderNumber, setOrderNumber }) {
                             </div>
                         </button>
                     </div>
-                </Form>
+                </form>
             </div>
             <div className="col-5 summary-container">
                 <div className="summary">

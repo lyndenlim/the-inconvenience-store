@@ -1,6 +1,8 @@
 import "./Login.css"
 import { Link, useNavigate } from "react-router-dom"
 import { useState } from "react"
+import Form from "react-bootstrap/Form"
+import Button from "react-bootstrap/Button"
 
 function Login({ setUser }) {
     const navigate = useNavigate()
@@ -31,17 +33,20 @@ function Login({ setUser }) {
     return (
         <div className="login-container">
             <div>
-                <h2>Welcome Back!</h2>
+                <h2 className="welcome-back">Welcome Back!</h2>
+                <br/>
                 <form onSubmit={handleLogin}>
-                    Email
-                    <input onChange={e => setEmail(e.target.value)} placeholder="email" type="email" autoComplete="new-password" required />
+                    <Form.Label>Email</Form.Label>
+                    <Form.Control onChange={e => setEmail(e.target.value)} placeholder="Email" type="email" autoComplete="new-password" required />
                     <br />
-                    Password
-                    <input onChange={e => setPassword(e.target.value)} placeholder="password" type="password" autoComplete="new-password" required />
+                    <Form.Label>Password</Form.Label>
+                    <Form.Control onChange={e => setPassword(e.target.value)} placeholder="Password" type="password" autoComplete="new-password" required />
                     <br />
-                    <br />
-                    <button type="submit">Login</button>
+                    <div className="login-button">
+                        <Button type="submit">Login</Button>
+                    </div>
                 </form>
+                <br />
                 Don't have an account? Sign up <Link to="/signup">here</Link>.
             </div>
         </div>
