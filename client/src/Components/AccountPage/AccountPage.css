@@ -4,10 +4,6 @@
     margin-bottom: 30px;
 }
 
-.settings-container {
-    /* margin-top: 20px; */
-}
-
 .email-edit-container, .password-edit-container {
     display: flex;
     justify-content: space-between;

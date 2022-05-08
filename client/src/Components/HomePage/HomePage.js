@@ -17,7 +17,7 @@ function HomePage() {
     async function getAllItems() {
       const data = await axios.get("/items")
       setItems(data.data)
-      setItemArray(data.data.map(item => item))    
+      setItemArray(data.data.map(item => item))
     }
 
     allCategory.current.classList.add("selected-category")
@@ -34,7 +34,7 @@ function HomePage() {
     personalsCategory.current.classList.remove("selected-category")
     otherCategory.current.classList.remove("selected-category")
   }
-  
+
   function sortByKitchen() {
     setItemArray(items.filter(item => item.category === "kitchen"))
     kitchenCategory.current.classList.add("selected-category")
@@ -109,6 +109,9 @@ function HomePage() {
       </div >
       <div className="item">
         {itemArray.map(item => <Item key={item.id} item={item} />)}
+      </div>
+      <div className="footer">
+        <span>All artwork designed by <a className="katerina" href="https://www.theuncomfortable.com/" target="_blank" rel="noopener noreferrer"><strong>Katerina Kamprani</strong></a></span>
       </div>
     </div >
   )
