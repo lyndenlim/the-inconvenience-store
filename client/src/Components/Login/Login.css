@@ -5,6 +5,6 @@
     height: 80vh;
 }
 
-.login-button, .welcome-back {
+.login-button-container, .welcome-back {
     text-align: center;
 }

@@ -42,7 +42,7 @@ function Login({ setUser }) {
                     <Form.Label>Password</Form.Label>
                     <Form.Control onChange={e => setPassword(e.target.value)} placeholder="Password" type="password" autoComplete="new-password" required />
                     <br />
-                    <div className="login-button">
+                    <div className="login-button-container">
                         <Button type="submit">Login</Button>
                     </div>
                 </form>

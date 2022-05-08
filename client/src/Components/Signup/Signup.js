@@ -1,6 +1,8 @@
 import { useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import "./Signup.css"
+import Form from "react-bootstrap/Form"
+import Button from "react-bootstrap/Button"
 
 function Signup({ setUser }) {
     const navigate = useNavigate()
@@ -36,20 +38,23 @@ function Signup({ setUser }) {
     return (
         <div className="signup-container">
             <div>
-                <h2>Let's Get Started</h2>
+                <h2 className="lets-get-started">Let's Get Started</h2>
+                <br />
                 <form onSubmit={handleSignUp}>
-                    Email
-                    <input onChange={(e) => setEmail(e.target.value)} placeholder="email" type="email" autoComplete="new-password" required />
+                    <Form.Label>Email</Form.Label>
+                    <Form.Control onChange={(e) => setEmail(e.target.value)} placeholder="Email" type="email" autoComplete="new-password" required />
                     <br />
-                    Password
-                    <input onChange={(e) => setPassword(e.target.value)} placeholder="password" type="password" autoComplete="new-password" required />
+                    <Form.Label>Password</Form.Label>
+                    <Form.Control onChange={(e) => setPassword(e.target.value)} placeholder="Password" type="password" autoComplete="new-password" required />
                     <br />
-                    Confirm Password
-                    <input onChange={(e) => setConfirmPassword(e.target.value)} placeholder="password" type="password" autoComplete="new-password" required />
+                    <Form.Label>Confirm Password</Form.Label>
+                    <Form.Control onChange={(e) => setConfirmPassword(e.target.value)} placeholder="Confirm Password" type="password" autoComplete="new-password" required />
                     <br />
-                    <br />
-                    <button type="submit">Sign up </button>
+                    <div className="signup-button-container">
+                        <Button type="submit">Sign Up </Button>
+                    </div>
                 </form>
+                <br />
                 Already have an account? <Link to="/">Login</Link>.
             </div>
         </div>
