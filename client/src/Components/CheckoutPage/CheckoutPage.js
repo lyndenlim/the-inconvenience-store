@@ -18,14 +18,14 @@ function CheckoutPage({ user, setCartCount, orderNumber, setOrderNumber }) {
     const [address, setAddress] = useState("")
     const [address2, setAddress2] = useState("")
     const [city, setCity] = useState("")
-    const [state, setState] = useState("")
+    const [state, setState] = useState("AL")
     const [postcode, setPostcode] = useState("")
     const [cardName, setCardName] = useState("")
     const [cardNumber, setCardNumber] = useState("")
     const [expiryDate, setExpiryDate] = useState("")
     const [securityCode, setSecurityCode] = useState("")
     const [shippingCost, setShippingCost] = useState(0)
-    const [stateTax, setStateTax] = useState(0)
+    const [stateSalesTax, setStateSalesTax] = useState(0)
 
     useEffect(() => {
         async function getOrderDetails() {
@@ -46,10 +46,167 @@ function CheckoutPage({ user, setCartCount, orderNumber, setOrderNumber }) {
             setShippingCost(10)
         }
 
+        function calculateSalesTax() {
+            switch (state) {
+                case "DE":
+                    setStateSalesTax(0)
+                    break;
+                case "MT":
+                    setStateSalesTax(0)
+                    break;
+                case "NH":
+                    setStateSalesTax(0)
+                    break;
+                case "OR":
+                    setStateSalesTax(0)
+                    break;
+                case "AK":
+                    setStateSalesTax(0.0176)
+                    break;
+                case "HI":
+                    setStateSalesTax(0.0444)
+                    break;
+                case "WY":
+                    setStateSalesTax(0.0522)
+                    break;
+                case "WI":
+                    setStateSalesTax(0.0543)
+                    break;
+                case "ME":
+                    setStateSalesTax(0.0550)
+                    break;
+                case "VA":
+                    setStateSalesTax(0.0575)
+                    break;
+                case "DC":
+                    setStateSalesTax(0.060)
+                    break;
+                case "KY":
+                    setStateSalesTax(0.060)
+                    break;
+                case "MD":
+                    setStateSalesTax(0.060)
+                    break;
+                case "MI":
+                    setStateSalesTax(0.060)
+                    break;
+                case "ID":
+                    setStateSalesTax(0.0602)
+                    break;
+                case "VT":
+                    setStateSalesTax(0.0624)
+                    break;
+                case "MA":
+                    setStateSalesTax(0.0625)
+                    break;
+                case "PA":
+                    setStateSalesTax(0.0634)
+                    break;
+                case "CT":
+                    setStateSalesTax(0.0635)
+                    break;
+                case "SD":
+                    setStateSalesTax(0.0640)
+                    break;
+                case "WV":
+                    setStateSalesTax(0.0652)
+                    break;
+                case "NJ":
+                    setStateSalesTax(0.0660)
+                case "IA":
+                    setStateSalesTax(0.0694)
+                    break;
+                case "NE":
+                    setStateSalesTax(0.0694)
+                    break;
+                case "ND":
+                    setStateSalesTax(0.0696)
+                    break;
+                case "NC":
+                    setStateSalesTax(0.0698)
+                    break;
+                case "IN":
+                    setStateSalesTax(0.070)
+                    break;
+                case "RI":
+                    setStateSalesTax(0.070)
+                    break;
+                case "FL":
+                    setStateSalesTax(0.0701)
+                    break;
+                case "MI":
+                    setStateSalesTax(0.0707)
+                    break;
+                case "UT":
+                    setStateSalesTax(0.0719)
+                    break;
+                case "OH":
+                    setStateSalesTax(0.0722)
+                    break;
+                case "GA":
+                    setStateSalesTax(0.0735)
+                    break;
+                case "SC":
+                    setStateSalesTax(0.0744)
+                    break;
+                case "MN":
+                    setStateSalesTax(0.0749)
+                case "CO":
+                    setStateSalesTax(0.0777)
+                    break;
+                case "NM":
+                    setStateSalesTax(0.0784)
+                    break;
+                case "TX":
+                    setStateSalesTax(0.0820)
+                    break;
+                case "NV":
+                    setStateSalesTax(0.0823)
+                    break;
+                case "MO":
+                    setStateSalesTax(0.0829)
+                    break;
+                case "AZ":
+                    setStateSalesTax(0.0840)
+                    break;
+                case "NY":
+                    setStateSalesTax(0.0852)
+                    break;
+                case "KS":
+                    setStateSalesTax(0.0870)
+                    break;
+                case "IL":
+                    setStateSalesTax(0.0881)
+                    break;
+                case "CA":
+                    setStateSalesTax(0.0882)
+                    break;
+                case "OK":
+                    setStateSalesTax(0.0897)
+                    break;
+                case "AL":
+                    setStateSalesTax(0.0924)
+                    break;
+                case "WA":
+                    setStateSalesTax(0.0929)
+                    break;
+                case "AR":
+                    setStateSalesTax(0.0947)
+                    break;
+                case "LA":
+                    setStateSalesTax(0.0955)
+                    break;
+                case "TN":
+                    setStateSalesTax(0.0955)
+                    break;
+            }
+        }
+
         getOrderDetails()
         getOrderNumber()
         calculateShippingCost()
-    }, [])
+        calculateSalesTax()
+    }, [state])
 
     function placeOrder(e) {
         e.preventDefault()
@@ -224,6 +381,7 @@ function CheckoutPage({ user, setCartCount, orderNumber, setOrderNumber }) {
                                 <option value="CO">Colorado</option>
                                 <option value="CT">Connecticut</option>
                                 <option value="DE">Delaware</option>
+                                <option value="DC">District Of Columbia</option>
                                 <option value="FL">Florida</option>
                                 <option value="GA">Georgia</option>
                                 <option value="HI">Hawaii</option>
@@ -317,7 +475,7 @@ function CheckoutPage({ user, setCartCount, orderNumber, setOrderNumber }) {
                         return (
                             <div className="checkout-item" key={index}>
                                 <img className="checkout-image" src={require(`../../photos/${item.item.photos[0]}.jpeg`)} alt="item" />
-                                <div style={{width: "100%", paddingRight: "10px"}}>
+                                <div className="summary-item-total-quantity-container">
                                     <div className="summary-item-total-container">
                                         <h4>{item.item.name}</h4>
                                         <h4>${parseFloat(item.total).toFixed(2)}</h4>
@@ -331,11 +489,11 @@ function CheckoutPage({ user, setCartCount, orderNumber, setOrderNumber }) {
                     )}
                     Subtotal: ${priceArray.length > 0 ? priceArray.reduce((prev, current) => prev + current).toFixed(2) : null}
                     <br />
-                    State Tax: ${stateTax}
+                    State Tax: ${priceArray.length > 0 ? (priceArray.reduce((prev, current) => prev + current) * stateSalesTax).toFixed(2) : null}
                     <br />
                     Shipping: ${shippingCost.toFixed(2)}
                     <hr />
-                    <h4>Total: ${priceArray.length > 0 ? (priceArray.reduce((prev, current) => prev + current) + stateTax + shippingCost).toFixed(2) : null}</h4>
+                    <h4>Total: ${priceArray.length > 0 ? priceArray.reduce((prev, current) => prev + current + priceArray.reduce((prev, current) => prev + current) * stateSalesTax + shippingCost).toFixed(2) : null}</h4>
                 </div>
             </div>
         </div>
