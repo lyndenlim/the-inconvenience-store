@@ -2,6 +2,7 @@ import { useEffect, useState, useRef } from "react"
 import "./Homepage.css"
 import Item from "../Item/Item"
 import axios from "axios"
+import { motion } from "framer-motion"
 
 function HomePage() {
   const [itemArray, setItemArray] = useState([])
@@ -87,26 +88,26 @@ function HomePage() {
 
   return (
     <div className="homepage-container">
-      <div className="category-container">
-        <button id="all" onClick={sortByAll} className="category" ref={allCategory}>
+      <motion.div className="category-container">
+        <motion.button whileHover={{ scale: 1.1 }} transition={{ type: "spring", stiffness: 400 }} id="all" onClick={sortByAll} className="category" ref={allCategory}>
           All
-        </button>
-        <button id="kitchen" onClick={sortByKitchen} className="category" ref={kitchenCategory}>
+        </motion.button>
+        <motion.button whileHover={{ scale: 1.1 }} transition={{ type: "spring", stiffness: 400 }} id="kitchen" onClick={sortByKitchen} className="category" ref={kitchenCategory}>
           Kitchen
-        </button>
-        <button id="weather" onClick={sortByRain} className="category" ref={rainCategory}>
+        </motion.button>
+        <motion.button whileHover={{ scale: 1.1 }} transition={{ type: "spring", stiffness: 400 }} id="weather" onClick={sortByRain} className="category" ref={rainCategory}>
           Weather
-        </button>
-        <button id="homesecurity" onClick={sortBySecurity} className="category" ref={securityCategory}>
+        </motion.button>
+        <motion.button whileHover={{ scale: 1.1 }} transition={{ type: "spring", stiffness: 400 }} id="homesecurity" onClick={sortBySecurity} className="category" ref={securityCategory}>
           Home Security
-        </button>
-        <button id="personals" onClick={sortByPersonals} className="category" ref={personalsCategory}>
+        </motion.button>
+        <motion.button whileHover={{ scale: 1.1 }} transition={{ type: "spring", stiffness: 400 }} id="personals" onClick={sortByPersonals} className="category" ref={personalsCategory}>
           Personals
-        </button>
-        <button id="other" onClick={sortByOther} className="category" ref={otherCategory}>
+        </motion.button>
+        <motion.button whileHover={{ scale: 1.1 }} transition={{ type: "spring", stiffness: 400 }} id="other" onClick={sortByOther} className="category" ref={otherCategory}>
           Other
-        </button>
-      </div >
+        </motion.button>
+      </motion.div >
       <div className="item">
         {itemArray.map(item => <Item key={item.id} item={item} />)}
       </div>
