@@ -3,6 +3,8 @@ import { Link, useNavigate } from "react-router-dom"
 import { useState } from "react"
 import Form from "react-bootstrap/Form"
 import Button from "react-bootstrap/Button"
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Login({ setUser }) {
     const navigate = useNavigate()
@@ -17,15 +19,24 @@ function Login({ setUser }) {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({ email, password }),
-        }).then((r) => {
-            if (r.ok) {
-                r.json().then((user) => {
+        }).then(res => {
+            if (res.ok) {
+                res.json().then((user) => {
                     setUser(user)
                     navigate("/homepage")
                 });
             } else {
-                alert("error")
-                //   r.json().then((err) => setErrors(err.errors))
+                res.json().then(error => {
+                    toast.error(error.errors[0], {
+                        position: "bottom-right",
+                        autoClose: 4000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: false,
+                        draggable: true,
+                        progress: undefined,
+                    });
+                })
             }
         })
     }
@@ -34,7 +45,7 @@ function Login({ setUser }) {
         <div className="login-container">
             <div>
                 <h2 className="welcome-back">Welcome Back!</h2>
-                <br/>
+                <br />
                 <form onSubmit={handleLogin}>
                     <Form.Label>Email</Form.Label>
                     <Form.Control onChange={e => setEmail(e.target.value)} placeholder="Email" type="email" autoComplete="new-password" required />
@@ -49,6 +60,17 @@ function Login({ setUser }) {
                 <br />
                 Don't have an account? Sign up <Link to="/signup">here</Link>.
             </div>
+            <ToastContainer
+                position="bottom-right"
+                autoClose={4000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss={false}
+                draggable
+                pauseOnHover={false}
+            />
         </div>
     )
 }

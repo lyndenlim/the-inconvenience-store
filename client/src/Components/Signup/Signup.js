@@ -3,6 +3,8 @@ import { Link, useNavigate } from "react-router-dom"
 import "./Signup.css"
 import Form from "react-bootstrap/Form"
 import Button from "react-bootstrap/Button"
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Signup({ setUser }) {
     const navigate = useNavigate()
@@ -22,15 +24,24 @@ function Signup({ setUser }) {
                 password,
                 password_confirmation: confirmPassword,
             }),
-        }).then((r) => {
-            if (r.ok) {
-                r.json().then((user) => {
+        }).then(res => {
+            if (res.ok) {
+                res.json().then(user => {
                     setUser(user)
                     navigate("/homepage")
                 })
             } else {
-                alert("error")
-                // r.json().then((err) => setErrors(err.errors))
+                res.json().then(error => {
+                    toast.error(error.errors[0], {
+                        position: "bottom-right",
+                        autoClose: 4000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: false,
+                        draggable: true,
+                        progress: undefined,
+                    });
+                })
             }
         })
     }
@@ -57,6 +68,17 @@ function Signup({ setUser }) {
                 <br />
                 Already have an account? <Link to="/">Login</Link>.
             </div>
+            <ToastContainer
+                position="bottom-right"
+                autoClose={4000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss={false}
+                draggable
+                pauseOnHover={false}
+            />
         </div>
     )
 }
