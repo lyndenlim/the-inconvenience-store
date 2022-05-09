@@ -26,22 +26,24 @@ function Signup({ setUser }) {
             }),
         }).then(res => {
             if (res.ok) {
-                res.json().then(user => {
-                    setUser(user)
-                    navigate("/homepage")
-                })
+                res.json()
+                    .then(user => {
+                        setUser(user)
+                        navigate("/homepage")
+                    })
             } else {
-                res.json().then(error => {
-                    toast.error(error.errors[0], {
-                        position: "bottom-right",
-                        autoClose: 4000,
-                        hideProgressBar: false,
-                        closeOnClick: true,
-                        pauseOnHover: false,
-                        draggable: true,
-                        progress: undefined,
-                    });
-                })
+                res.json()
+                    .then(error => {
+                        toast.error(error.errors[0], {
+                            position: "bottom-right",
+                            autoClose: 4000,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: false,
+                            draggable: true,
+                            progress: undefined,
+                        });
+                    })
             }
         })
     }

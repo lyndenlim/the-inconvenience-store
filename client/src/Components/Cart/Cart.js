@@ -58,8 +58,8 @@ function Cart({ user, cartCount, setCartCount }) {
             <div className="col-8 cart-items">
                 {cartItems.map((item, index) => {
                     return (
-                        <>
-                            <div className="cart-item-container" key={index}>
+                        <div key={index}>
+                            <div className="cart-item-container" >
                                 <div>
                                     <img className="cart-image" src={require(`../../photos/${item.item.photos[0]}.jpeg`)} alt="cart" />
                                 </div>
@@ -88,7 +88,7 @@ function Cart({ user, cartCount, setCartCount }) {
                                 </div>
                             </div>
                             <hr />
-                        </>
+                        </div>
                     )
                 }
                 )}

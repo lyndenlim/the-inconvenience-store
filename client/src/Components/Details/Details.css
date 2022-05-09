@@ -6,7 +6,8 @@
 }
 
 .main-photo {
-    width: 100%;
+    float: right;
+    width: 93.5%;
     height: 95vh;
     object-fit: contain;
 }
@@ -15,20 +16,24 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    height: 95vh;
+    text-align: center;
+    height: inherit;
+    width: 100%;
     overflow: auto;
 }
 
 .sub-photo {
     object-fit: cover;
-    margin: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 15px;
     height: 200px;
     width: 200px;
+    /* margin: auto; */
 }
 
 .item-detail-container {
-    margin: 15px;
+    margin: auto;
 }
 
 .quantity::-webkit-outer-spin-button,
@@ -101,12 +106,14 @@
     align-items: center;
 }
 
-.button-container, .input-container {
+.button-container,
+.input-container {
     margin-left: 10px;
     margin-right: 10px;
 }
 
-.add-button, .minus-button {
+.add-button,
+.minus-button {
     background: transparent;
     margin: 2.5px;
     border: 1px solid black;
