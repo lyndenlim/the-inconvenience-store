@@ -9,6 +9,19 @@
     justify-content: space-between;
 }
 
+.settings-container {
+  margin: auto;
+  width: 80vw;
+}
+
+.no-orders {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 40vh;
+}
+
 .orders {
     margin: auto;
     width: 80vw;
@@ -51,4 +64,9 @@
 
 .settings-edit-button:hover {
   border-color: #a2a6ac #979aa1 #82858a;
+}
+
+.order-history-thumbnail {
+  height: 100px;
+  width: 100px;
 }
