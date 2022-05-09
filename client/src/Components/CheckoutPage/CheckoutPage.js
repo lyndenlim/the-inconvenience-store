@@ -24,14 +24,15 @@ function CheckoutPage({ user, setCartCount, orderNumber, setOrderNumber }) {
     const [cardNumber, setCardNumber] = useState("")
     const [expiryDate, setExpiryDate] = useState("")
     const [securityCode, setSecurityCode] = useState("")
-    const [shippingCost, setShippingCost] = useState(0)
     const [stateSalesTax, setStateSalesTax] = useState(0)
+    const [quantityArray, setQuantityArray] = useState([])
 
     useEffect(() => {
         async function getOrderDetails() {
             const data = await axios.get(`/users/${user.id}`)
             setOrderDetails(data.data.carts)
             setPriceArray(data.data.carts.map(item => parseFloat(item.total)))
+            setQuantityArray(data.data.carts.map(item => parseInt(item.quantity)))
         }
 
         function getOrderNumber() {
@@ -40,10 +41,6 @@ function CheckoutPage({ user, setCartCount, orderNumber, setOrderNumber }) {
                 randomNumber += Math.floor(Math.random() * 10)
             }
             setOrderNumber(randomNumber)
-        }
-
-        function calculateShippingCost() {
-            setShippingCost(10)
         }
 
         function calculateSalesTax() {
@@ -204,7 +201,6 @@ function CheckoutPage({ user, setCartCount, orderNumber, setOrderNumber }) {
 
         getOrderDetails()
         getOrderNumber()
-        calculateShippingCost()
         calculateSalesTax()
     }, [state])
 
@@ -491,9 +487,9 @@ function CheckoutPage({ user, setCartCount, orderNumber, setOrderNumber }) {
                     <br />
                     State Tax: ${priceArray.length > 0 ? (priceArray.reduce((prev, current) => prev + current) * stateSalesTax).toFixed(2) : null}
                     <br />
-                    Shipping: ${shippingCost.toFixed(2)}
+                    Shipping: ${quantityArray.length > 0 ? (priceArray.reduce((prev, current) => prev + current) + quantityArray.reduce((prev, current) => prev + current) * quantityArray.reduce((prev, current) => prev + current) / 100).toFixed(2) : null}
                     <hr />
-                    <h4>Total: ${priceArray.length > 0 ? priceArray.reduce((prev, current) => prev + current + priceArray.reduce((prev, current) => prev + current) * stateSalesTax + shippingCost).toFixed(2) : null}</h4>
+                    <h4>Total: ${priceArray.length > 0 ? (priceArray.reduce((prev, current) => prev + current) + priceArray.reduce((prev, current) => prev + current) * stateSalesTax + priceArray.reduce((prev, current) => prev + current) + quantityArray.reduce((prev, current) => prev + current) * quantityArray.reduce((prev, current) => prev + current) / 100).toFixed(2) : null}</h4>
                 </div>
             </div>
         </div>
