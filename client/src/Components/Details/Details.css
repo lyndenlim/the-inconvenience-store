@@ -29,7 +29,6 @@
     margin-bottom: 15px;
     height: 200px;
     width: 200px;
-    /* margin: auto; */
 }
 
 .item-detail-container {
@@ -122,4 +121,9 @@
 
 .form-container {
     width: fit-content;
+}
+
+
+.selected-photo {
+    border: solid 1px black;
 }

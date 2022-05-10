@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState, useRef } from "react"
 import { useParams } from "react-router-dom"
 import axios from "axios"
 import "./Details.css"
@@ -13,6 +13,7 @@ function Details({ user, setCartCount }) {
     const [quantity, setQuantity] = useState(1)
     const [mainPhoto, setMainPhoto] = useState("")
     const [subPhotos, setSubPhotos] = useState([])
+    const photoArray = useRef()
 
     useEffect(() => {
         async function getItemDetails() {
@@ -23,8 +24,15 @@ function Details({ user, setCartCount }) {
             setSubPhotos(data.data.photos)
         }
 
+        async function setActivePhoto() {
+            if (photoArray.current) {
+                Array.from(photoArray.current.children).map(child => child.classList)[0].add("selected-photo")
+            }
+        }
+
         getItemDetails()
-    }, [])
+        setActivePhoto()
+    }, [photoArray.current])
 
     function addQuantity() {
         if (quantity >= 1) {
@@ -75,14 +83,25 @@ function Details({ user, setCartCount }) {
         setQuantity(1)
     }
 
+    function switchSelectedPhoto(photo) {
+        Array.from(photoArray.current.children).forEach(child => {
+            child.classList.remove("selected-photo")
+            if (child.src.includes(photo)) {
+                child.classList.add("selected-photo")
+                setMainPhoto(photo)
+            }
+        })
+    }
+
+
     return (
         <div className="item-container">
-            <div className="col-6 item-photo-container" >
+            <div className="col-6 item-photo-container">
                 <img className="main-photo" src={mainPhoto ? require(`../../photos/${mainPhoto}.jpeg`) : null} alt="main" />
             </div>
             {subPhotos.length > 1 ?
-                <div className="col-2 sub-photo-container">
-                    {subPhotos.map(photo => <img key={photo} onClick={() => setMainPhoto(photo)} className="sub-photo" src={require(`../../photos/${photo}.jpeg`)} alt="sub" />)}
+                <div className="col-2 sub-photo-container" ref={photoArray}>
+                    {subPhotos.map(photo => <img key={photo} onClick={() => switchSelectedPhoto(photo)} className="sub-photo" src={require(`../../photos/${photo}.jpeg`)} alt="sub" />)}
                 </div>
                 :
                 null}
