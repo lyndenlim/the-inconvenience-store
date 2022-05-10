@@ -14,6 +14,7 @@ function App() {
   const [user, setUser] = useState("")
   const [cartCount, setCartCount] = useState(0)
   const [orderNumber, setOrderNumber] = useState("")
+  const [orderDetails, setOrderDetails] = useState([])
 
   useEffect(() => {
     fetch("/me")
@@ -36,8 +37,8 @@ function App() {
         <Route path="/items/:id" element={<Details user={user} setCartCount={setCartCount} />} />
         <Route path="/cart" element={<Cart user={user} cartCount={cartCount} setCartCount={setCartCount} />} />
         <Route path="/account" element={<AccountPage user={user} />} />
-        <Route path="/checkout" element={<CheckoutPage user={user} setCartCount={setCartCount} orderNumber={orderNumber} setOrderNumber={setOrderNumber} />} />
-        <Route path="/ordersummary" element={<OrderSummary user={user} orderNumber={orderNumber} />} />
+        <Route path="/checkout" element={<CheckoutPage user={user} setCartCount={setCartCount} orderNumber={orderNumber} setOrderNumber={setOrderNumber} orderDetails={orderDetails} setOrderDetails={setOrderDetails} />} />
+        <Route path="/ordersummary" element={<OrderSummary orderNumber={orderNumber} orderDetails={orderDetails} />} />
       </Routes>
     </div>
   );

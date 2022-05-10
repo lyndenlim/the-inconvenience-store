@@ -129,6 +129,8 @@ function AccountPage({ user }) {
                                     <br />
                                     {order.address}
                                     <br />
+                                    {order.address2}
+                                    <br />
                                     {order.city} {order.state}, {order.postcode}
                                 </div>
                                 <hr />

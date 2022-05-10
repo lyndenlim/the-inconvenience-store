@@ -8,9 +8,9 @@ import Col from "react-bootstrap/Col"
 import Row from "react-bootstrap/Row"
 import gsap from "gsap"
 
-function CheckoutPage({ user, setCartCount, orderNumber, setOrderNumber }) {
+function CheckoutPage({ user, setCartCount, orderNumber, setOrderNumber, orderDetails, setOrderDetails }) {
+    console.log(orderDetails)
     const navigate = useNavigate()
-    const [orderDetails, setOrderDetails] = useState([])
     const [priceArray, setPriceArray] = useState([])
     const [firstName, setFirstName] = useState("")
     const [lastName, setLastName] = useState("")

@@ -1,7 +1,6 @@
 import { Carousel } from "react-bootstrap"
 import { Link } from "react-router-dom"
 import "./Item.css"
-import { motion } from "framer-motion"
 
 function Item({ item }) {
     return (
