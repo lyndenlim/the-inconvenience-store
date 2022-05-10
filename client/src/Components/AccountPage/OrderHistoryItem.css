@@ -1,0 +1,18 @@
+.orders {
+    margin: auto;
+    width: 80vw;
+}
+
+.order-history-image-container {
+    display: flex;
+    width: 100%;
+    overflow: auto;
+}
+
+.order-history-image {
+    margin-right: 10px;
+}
+
+.name-quantity-container {
+    text-align: center;
+}

@@ -1,6 +1,6 @@
 .order-summary-container {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     align-items: center;
     text-align: center;
     height: auto;
@@ -9,7 +9,7 @@
 }
 
 .order-summary {
-    margin: auto;    
+    margin: auto;
     width: fit-content;
 }
 
@@ -20,5 +20,9 @@
 }
 
 .grand-total {
-    float:right;
+    float: right;
+}
+
+.order-summary-image-photo-container {
+    margin-left: 10px;
 }

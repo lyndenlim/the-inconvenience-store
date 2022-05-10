@@ -7,6 +7,7 @@ import Button from "react-bootstrap/Button"
 import Form from "react-bootstrap/Form"
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import OrderHistoryItem from "./OrderHistoryItem"
 
 function AccountPage({ user }) {
     const [newEmail, setNewEmail] = useState("")
@@ -105,38 +106,7 @@ function AccountPage({ user }) {
             <h2>Order History</h2>
             {orders.length > 0 ?
                 <div className="row orders">
-                    {orders.map((order, index) => {
-                        return (
-                            <div className="orders" key={index}>
-                                <div>
-                                    Order #{order.order_number}
-                                    <br />
-                                    Placed on {order.order_date.replaceAll("-", "/")}
-                                </div>
-                                <br />
-                                <img className="order-history-thumbnail" src={require(`../../photos/${JSON.parse(order.all_items[0].replaceAll("=>", ":")).item.photos[0]}.jpeg`)} />
-                                <br />
-                                <div>
-                                    {JSON.parse(order.all_items[index].replaceAll("=>", ":")).item.name}
-                                    <br />
-                                    Qty: {JSON.parse(order.all_items[index].replaceAll("=>", ":")).quantity}
-                                </div>
-                                <p>Order Total: ${(parseFloat((JSON.parse(order.all_items[index].replaceAll("=>", ":")).total))).toFixed(2)}</p>
-                                <div>
-                                    Shipping to:
-                                    <br />
-                                    {order.first_name} {order.last_name}
-                                    <br />
-                                    {order.address}
-                                    <br />
-                                    {order.address2}
-                                    <br />
-                                    {order.city} {order.state}, {order.postcode}
-                                </div>
-                                <hr />
-                            </div>
-                        )
-                    })}
+                    {orders.map((order, index) => <div key={index}><OrderHistoryItem order={order} /></div>)}
                 </div> :
                 <div className="no-orders">
                     <h3>You haven't made any orders yet.</h3>
