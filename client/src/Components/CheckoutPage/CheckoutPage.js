@@ -9,7 +9,6 @@ import Row from "react-bootstrap/Row"
 import gsap from "gsap"
 
 function CheckoutPage({ user, setCartCount, orderNumber, setOrderNumber, orderDetails, setOrderDetails }) {
-    console.log(orderDetails)
     const navigate = useNavigate()
     const [priceArray, setPriceArray] = useState([])
     const [firstName, setFirstName] = useState("")
@@ -217,7 +216,9 @@ function CheckoutPage({ user, setCartCount, orderNumber, setOrderNumber, orderDe
             city: city,
             state: state,
             postcode: postcode,
-            order_number: orderNumber
+            order_number: orderNumber,
+            shipping_cost: priceArray.reduce((prev, current) => prev + current) + quantityArray.reduce((prev, current) => prev + current) * quantityArray.reduce((prev, current) => prev + current) / 100,
+            order_total: priceArray.reduce((prev, current) => prev + current) + priceArray.reduce((prev, current) => prev + current) * stateSalesTax + priceArray.reduce((prev, current) => prev + current) + quantityArray.reduce((prev, current) => prev + current) * quantityArray.reduce((prev, current) => prev + current) / 100
         })
             .then(res => {
                 if (res.status === 201) {

@@ -1,7 +1,19 @@
+import axios from "axios"
+import { useEffect, useState } from "react"
 import "./OrderSummary.css"
 
-function OrderSummary({ orderNumber, orderDetails }) {
-    console.log(orderDetails)
+function OrderSummary({ user, orderNumber, orderDetails }) {
+    const [totalAmount, setTotalAmount] = useState(1)
+
+    useEffect(() => {
+        async function getTotalAmount() {
+            const data = await axios.get(`/users/${user.id}`)
+            setTotalAmount((parseFloat(data.data.orders[data.data.orders.length - 1].order_total)).toFixed(2))
+        }
+
+        getTotalAmount()
+    }, [totalAmount])
+
     return (
         <div className="order-summary-container">
             <div className="order-summary">
@@ -22,7 +34,7 @@ function OrderSummary({ orderNumber, orderDetails }) {
                         </div>
                     )
                 })}
-                <h3 className="grand-total">Total: ${orderDetails.map(item => parseFloat(item.total)).reduce((prev, current) => prev + current)}</h3>
+                <h3 className="grand-total">Total: ${totalAmount}</h3>
             </div>
         </div >
     )

@@ -12,6 +12,8 @@ class CreateOrders < ActiveRecord::Migration[6.1]
       t.text :state
       t.bigint :postcode
       t.bigint :order_number
+      t.decimal :shipping_cost
+      t.decimal :order_total
 
       t.timestamps
     end

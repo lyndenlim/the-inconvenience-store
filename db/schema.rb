@@ -47,6 +47,8 @@ ActiveRecord::Schema.define(version: 2022_05_06_193857) do
     t.text "state"
     t.bigint "postcode"
     t.bigint "order_number"
+    t.decimal "shipping_cost"
+    t.decimal "order_total"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

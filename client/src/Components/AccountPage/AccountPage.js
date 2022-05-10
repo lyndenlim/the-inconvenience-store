@@ -106,7 +106,7 @@ function AccountPage({ user }) {
             <h2>Order History</h2>
             {orders.length > 0 ?
                 <div className="row orders">
-                    {orders.map((order, index) => <div key={index}><OrderHistoryItem order={order} /></div>)}
+                    {orders.map((order, index) => <div key={index}><OrderHistoryItem user={user} order={order} /></div>)}
                 </div> :
                 <div className="no-orders">
                     <h3>You haven't made any orders yet.</h3>

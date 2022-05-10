@@ -1,8 +1,18 @@
-import { useEffect, useState } from "react"
+import axios from "axios"
+import { useState, useEffect } from "react"
 import "./OrderHistoryItem.css"
 
-function OrderHistoryItem({ order }) {
-    const [orderTotal, setOrderTotal] = useState(order.all_items.map(item => parseFloat(JSON.parse(item.replaceAll("=>", ":")).total)).reduce((prev, current) => prev + current))
+function OrderHistoryItem({ user, order }) {
+    const [orderTotal, setOrderTotal] = useState(1)
+
+    useEffect(() => {
+        async function getOrderTotal() {
+            const data = await axios.get(`/users/${user.id}`)
+            setOrderTotal((parseFloat(data.data.orders[data.data.orders.length - 1].order_total)).toFixed(2))
+        }
+
+        getOrderTotal()
+    }, [])
 
     return (
         <div>
@@ -28,7 +38,7 @@ function OrderHistoryItem({ order }) {
                     })}
                 </div>
                 <br />
-                <p>Order Total: <strong>${orderTotal.toFixed(2)}</strong></p>
+                <p>Order Total: <strong>${orderTotal}</strong></p>
             </div>
             <div>
                 Shipping to:
