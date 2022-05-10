@@ -3,12 +3,12 @@ import { useState, useEffect } from "react"
 import "./OrderHistoryItem.css"
 
 function OrderHistoryItem({ user, order }) {
-    const [orderTotal, setOrderTotal] = useState(1)
+    const [orderTotal, setOrderTotal] = useState([])
 
     useEffect(() => {
         async function getOrderTotal() {
             const data = await axios.get(`/users/${user.id}`)
-            setOrderTotal((parseFloat(data.data.orders[data.data.orders.length - 1].order_total)).toFixed(2))
+            setOrderTotal(data.data.orders.filter(item => order.order_number === item.order_number))
         }
 
         getOrderTotal()
@@ -38,7 +38,7 @@ function OrderHistoryItem({ user, order }) {
                     })}
                 </div>
                 <br />
-                <p>Order Total: <strong>${orderTotal}</strong></p>
+                {orderTotal.map(item => <p key={item}>Order Total: <strong>${(parseFloat(item.order_total)).toFixed(2)}</strong></p>)}
             </div>
             <div>
                 Shipping to:
