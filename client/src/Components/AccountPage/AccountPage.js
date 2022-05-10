@@ -108,28 +108,38 @@ function AccountPage({ user }) {
                     {orders.map((order, index) => {
                         return (
                             <div className="orders" key={index}>
-                                <p>Order Placed {order.order_date.replaceAll("-", "/")}</p>
-                                <img className="order-history-thumbnail" src={require(`../../photos/${JSON.parse(order.all_items[0].replaceAll("=>", ":")).item.photos[0]}.jpeg`)}/>
-                                <p>{order.first_name} {order.last_name}</p>
-                                Shipping to:
                                 <div>
+                                    Order #{order.order_number}
+                                    <br />
+                                    Placed on {order.order_date.replaceAll("-", "/")}
+                                </div>
+                                <br />
+                                <img className="order-history-thumbnail" src={require(`../../photos/${JSON.parse(order.all_items[0].replaceAll("=>", ":")).item.photos[0]}.jpeg`)} />
+                                <br />
+                                <div>
+                                    {JSON.parse(order.all_items[index].replaceAll("=>", ":")).item.name}
+                                    <br />
+                                    Qty: {JSON.parse(order.all_items[index].replaceAll("=>", ":")).quantity}
+                                </div>
+                                <p>Order Total: ${(parseFloat((JSON.parse(order.all_items[index].replaceAll("=>", ":")).total))).toFixed(2)}</p>
+                                <div>
+                                    Shipping to:
+                                    <br />
+                                    {order.first_name} {order.last_name}
+                                    <br />
                                     {order.address}
-                                    <br/>
+                                    <br />
                                     {order.city} {order.state}, {order.postcode}
                                 </div>
-                                <br/>
-                                <p>{JSON.parse(order.all_items[index].replaceAll("=>", ":")).item.name} Qty:{JSON.parse(order.all_items[index].replaceAll("=>", ":")).quantity}</p>
-                                <p>{JSON.parse(order.all_items[index].replaceAll("=>", ":")).item.category}</p>
-                                <p>Order Total: ${(parseFloat((JSON.parse(order.all_items[index].replaceAll("=>", ":")).total))).toFixed(2)}</p>
                                 <hr />
                             </div>
                         )
                     })}
-                </div> : 
+                </div> :
                 <div className="no-orders">
                     <h3>You haven't made any orders yet.</h3>
                 </div>
-                }
+            }
             <div className="row settings">
                 <h3>Login & Security</h3>
                 <ListGroup>

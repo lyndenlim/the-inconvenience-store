@@ -46,10 +46,6 @@ ActiveRecord::Schema.define(version: 2022_05_06_193857) do
     t.text "city"
     t.text "state"
     t.bigint "postcode"
-    t.text "card_name"
-    t.bigint "card_number"
-    t.text "expiry_date"
-    t.bigint "security_code"
     t.bigint "order_number"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

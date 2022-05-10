@@ -217,10 +217,6 @@ function CheckoutPage({ user, setCartCount, orderNumber, setOrderNumber }) {
             city: city,
             state: state,
             postcode: postcode,
-            card_name: cardName,
-            card_number: cardNumber,
-            expiry_date: expiryDate,
-            security_code: securityCode,
             order_number: orderNumber
         })
             .then(res => {

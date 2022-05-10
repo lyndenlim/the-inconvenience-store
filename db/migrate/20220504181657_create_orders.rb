@@ -11,10 +11,6 @@ class CreateOrders < ActiveRecord::Migration[6.1]
       t.text :city
       t.text :state
       t.bigint :postcode
-      t.text :card_name
-      t.bigint :card_number
-      t.text :expiry_date
-      t.bigint :security_code
       t.bigint :order_number
 
       t.timestamps
