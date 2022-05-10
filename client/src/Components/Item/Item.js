@@ -11,20 +11,20 @@ function Item({ item }) {
                     {item.photos.map(image =>
                         <Carousel.Item key={image}>
                             <Link to={`/items/${item.id}`}>
-                                <motion.div className="item-content" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ duration: 1 }} viewport={{ once: true }}>
+                                <div className="item-content">
                                     <img id={item.id} className="photo" src={require(`../../photos/${image}.jpeg`)} alt={image} />
                                     <div className="name">{item.name}</div>
-                                </motion.div>
+                                </div>
                             </Link>
                         </Carousel.Item>)}
                 </Carousel>
                 :
                 item.photos.map(image =>
                     <Link key={image} to={`/items/${item.id}`}>
-                        <motion.div className="item-content" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ duration: 1 }} viewport={{ once: true }}>
+                        <div className="item-content">
                             <img id={item.id} className="photo" src={require(`../../photos/${image}.jpeg`)} alt={image} />
                             <span className="name">{item.name}</span>
-                        </motion.div>
+                        </div>
                     </Link>)}
         </div>
     )
