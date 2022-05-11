@@ -4,6 +4,8 @@ import "./Cart.css"
 import axios from "axios"
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import empty_cart from "../../photos/empty_cart.jpg"
+import { motion } from "framer-motion"
 
 function Cart({ user, cartCount, setCartCount }) {
     const navigate = useNavigate()
@@ -54,11 +56,11 @@ function Cart({ user, cartCount, setCartCount }) {
 
     return (
         <div className="row col-container">
-            {cartItems.length > 0 ? <h2>Shopping Cart</h2> : null}
+            {cartItems.length > 0 ? <h2 className="shopping-cart-header">Shopping Cart</h2> : null}
             <div className="col-8 cart-items">
                 {cartItems.map((item, index) => {
                     return (
-                        <div key={index}>
+                        <div className="overall-cart-item-container" key={index}>
                             <div className="cart-item-container" >
                                 <div>
                                     <img className="cart-image" src={require(`../../photos/${item.item.photos[0]}.jpeg`)} alt="cart" />
@@ -100,9 +102,12 @@ function Cart({ user, cartCount, setCartCount }) {
                     <button className="proceed-to-checkout" onClick={() => navigate("/checkout")}>Proceed to checkout</button>
                 </div>
                 :
-                <div className="empty-cart">
-                    <h1>Your Cart is Empty</h1>
-                </div>
+                <motion.div className="empty-cart" initial={{ y: -100 }} animate={{ y: 0 }}>
+                    <div className="empty-cart-image-container">
+                        <img className="empty-cart-image" src={empty_cart} alt="empty-cart" />
+                    </div>
+                    <h1 className="your-cart-empty">Your Cart is Empty</h1>
+                </motion.div>
             }
             <ToastContainer
                 position="bottom-right"

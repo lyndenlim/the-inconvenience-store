@@ -2,7 +2,7 @@ import { useEffect, useState, useRef } from "react"
 import "./Homepage.css"
 import Item from "../Item/Item"
 import axios from "axios"
-import { motion } from "framer-motion"
+import { AnimatePresence, motion } from "framer-motion"
 
 function HomePage() {
   const [itemArray, setItemArray] = useState([])
@@ -89,28 +89,30 @@ function HomePage() {
   return (
     <div className="homepage-container">
       <motion.div className="category-container">
-        <motion.button whileHover={{ scale: 1.1 }} transition={{ type: "spring", stiffness: 400 }} id="all" onClick={sortByAll} className="category" ref={allCategory}>
+        <motion.button whileHover={{ scale: 1.15 }} transition={{ type: "spring", stiffness: 400 }} id="all" onClick={sortByAll} className="category" ref={allCategory}>
           All
         </motion.button>
-        <motion.button whileHover={{ scale: 1.1 }} transition={{ type: "spring", stiffness: 400 }} id="kitchen" onClick={sortByKitchen} className="category" ref={kitchenCategory}>
+        <motion.button whileHover={{ scale: 1.15 }} transition={{ type: "spring", stiffness: 400 }} id="kitchen" onClick={sortByKitchen} className="category" ref={kitchenCategory}>
           Kitchen
         </motion.button>
-        <motion.button whileHover={{ scale: 1.1 }} transition={{ type: "spring", stiffness: 400 }} id="weather" onClick={sortByRain} className="category" ref={rainCategory}>
+        <motion.button whileHover={{ scale: 1.15 }} transition={{ type: "spring", stiffness: 400 }} id="weather" onClick={sortByRain} className="category" ref={rainCategory}>
           Weather
         </motion.button>
-        <motion.button whileHover={{ scale: 1.1 }} transition={{ type: "spring", stiffness: 400 }} id="homesecurity" onClick={sortBySecurity} className="category" ref={securityCategory}>
+        <motion.button whileHover={{ scale: 1.15 }} transition={{ type: "spring", stiffness: 400 }} id="homesecurity" onClick={sortBySecurity} className="category" ref={securityCategory}>
           Home Security
         </motion.button>
-        <motion.button whileHover={{ scale: 1.1 }} transition={{ type: "spring", stiffness: 400 }} id="personals" onClick={sortByPersonals} className="category" ref={personalsCategory}>
+        <motion.button whileHover={{ scale: 1.15 }} transition={{ type: "spring", stiffness: 400 }} id="personals" onClick={sortByPersonals} className="category" ref={personalsCategory}>
           Personals
         </motion.button>
-        <motion.button whileHover={{ scale: 1.1 }} transition={{ type: "spring", stiffness: 400 }} id="other" onClick={sortByOther} className="category" ref={otherCategory}>
+        <motion.button whileHover={{ scale: 1.15 }} transition={{ type: "spring", stiffness: 400 }} id="other" onClick={sortByOther} className="category" ref={otherCategory}>
           Other
         </motion.button>
       </motion.div >
-      <div className="item">
-        {itemArray.map(item => <Item key={item.id} item={item} />)}
-      </div>
+      <motion.div className="item" layout>
+        <AnimatePresence>
+          {itemArray.map(item => <Item key={item.id} item={item} />)}
+        </AnimatePresence>
+      </motion.div>
       <div className="footer">
         <span>All artwork designed by <a className="katerina" href="https://www.theuncomfortable.com/" target="_blank" rel="noopener noreferrer"><strong>Katerina Kamprani</strong></a></span>
       </div>

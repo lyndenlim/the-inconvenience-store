@@ -7,6 +7,8 @@ import Badge from "@mui/material/Badge"
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart"
 import { useEffect } from 'react';
 import axios from 'axios';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faShop } from "@fortawesome/free-solid-svg-icons"
 
 function NavBar({ user, setUser, setCartCount, cartCount }) {
     const location = useLocation()
@@ -15,7 +17,9 @@ function NavBar({ user, setUser, setCartCount, cartCount }) {
     useEffect(() => {
         async function getCart() {
             const data = await axios.get(`/users/${user.id}`)
-            setCartCount(data.data.carts.map(cart => cart.quantity).reduce((prev, current) => prev + current))
+            if (data.data.carts.length > 0) {
+                setCartCount(data.data.carts.map(cart => cart.quantity).reduce((prev, current) => prev + current))
+            }
         }
 
         getCart()
@@ -36,8 +40,8 @@ function NavBar({ user, setUser, setCartCount, cartCount }) {
         <Navbar>
             <Container fluid>
                 <Link className="link" to="/homepage">
-                    <div>
-                        The Inconvienence Store
+                    <div className="logo">
+                        <span><FontAwesomeIcon icon={faShop} /> The Inconvienence Store</span>
                     </div>
                 </Link>
                 {!user ?

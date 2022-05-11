@@ -2,6 +2,7 @@
     object-fit: cover;
     height: 350px;
     width: 370px;
+    transition: opacity 0.5s ease;
 }
 
 .photo-container {
@@ -33,4 +34,8 @@
 
 .item-content {
     position: relative;
+}
+
+.empty-cart{
+    display: inline-block;
 }

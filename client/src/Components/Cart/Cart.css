@@ -22,9 +22,25 @@
 
 .empty-cart {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     height: 80vh;
+}
+
+.empty-cart-image {
+    width: 400px;
+    height: inherit;
+    object-fit: cover;
+}
+
+.empty-cart-image-container {
+    height: 250px;
+    width: 400px;
+}
+
+.your-cart-empty {
+    z-index: 1;
 }
 
 .cart-item-container {
@@ -36,6 +52,9 @@
 
 .col-container {
     position: relative;
+}
+
+.overall-cart-item-container, .shopping-cart-header {
     margin-left: 20px;
 }
 

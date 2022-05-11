@@ -1,10 +1,11 @@
 import { Carousel } from "react-bootstrap"
 import { Link } from "react-router-dom"
 import "./Item.css"
+import { motion } from "framer-motion"
 
 function Item({ item }) {
     return (
-        <div className="photo-container" >
+        <motion.div className="photo-container" layout initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
             {item.photos.length > 1 ?
                 <Carousel className="carousel-dark" fade interval={null}>
                     {item.photos.map(image =>
@@ -25,7 +26,7 @@ function Item({ item }) {
                             <span className="name">{item.name}</span>
                         </div>
                     </Link>)}
-        </div>
+        </motion.div>
     )
 }
 

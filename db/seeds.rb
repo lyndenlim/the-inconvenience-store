@@ -58,7 +58,7 @@ numquam blanditiis harum quisquam eius", photos: ["salt_and_pepper_shakers"])
 Item.create(name: "Slipper Spoon", price: 2.00, category: "kitchen", description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
 molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum
 numquam blanditiis harum quisquam eius", photos: ["slipper_spoon1", "slipper_spoon2"])
-Item.create(name: "Stairway to Heaven", price: 1300.00, category: "home security", description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
+Item.create(name: "Slim Staircase", price: 1300.00, category: "home security", description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
 molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum
 numquam blanditiis harum quisquam eius", photos: ["staircase"])
 Item.create(name: "Detached Home Entrance", price: 1000.00, category: "home security", description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
