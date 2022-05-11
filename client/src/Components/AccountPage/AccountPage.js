@@ -8,6 +8,7 @@ import Form from "react-bootstrap/Form"
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import OrderHistoryItem from "./OrderHistoryItem"
+import ScaleLoader from "react-spinners/ScaleLoader"
 
 function AccountPage({ user }) {
     const [newEmail, setNewEmail] = useState("")
@@ -17,6 +18,7 @@ function AccountPage({ user }) {
     const [orders, setOrders] = useState([])
     const [showEmail, setShowEmail] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
+    const [isLoaded, setIsLoaded] = useState(false);
 
     const handleCloseEmail = () => setShowEmail(false);
     const handleShowEmail = () => setShowEmail(true);
@@ -26,8 +28,13 @@ function AccountPage({ user }) {
 
     useEffect(() => {
         async function getOrderInfo() {
-            const data = await axios.get(`users/${user.id}`)
-            setOrders(data.data.orders)
+            axios.get(`users/${user.id}`)
+                .then(data => {
+                    setOrders(data.data.orders)
+                    setTimeout(() => {
+                        setIsLoaded(true)
+                    }, 1000)
+                })
         }
 
         getOrderInfo()
@@ -102,92 +109,97 @@ function AccountPage({ user }) {
     }
 
     return (
-        <div className="settings-container">
-            <h2>Order History</h2>
-            {orders.length > 0 ?
-                <div className="row orders">
-                    {orders.map((order, index) => <div key={index}><OrderHistoryItem user={user} order={order} /></div>)}
-                </div> :
-                <div className="no-orders">
-                    <h3>You haven't made any orders yet.</h3>
-                </div>
-            }
-            <div className="row settings">
-                <h3>Login & Security</h3>
-                <ListGroup>
-                    <ListGroup.Item>
-                        <div className="email-edit-container">
-                            <label><strong>Email:</strong></label>
-                            <button className="settings-edit-button" onClick={handleShowEmail}>Edit</button>
-                        </div>
-                        <p>{user.email}</p>
-                    </ListGroup.Item>
-                    <ListGroup.Item>
-                        <div className="password-edit-container">
-                            <label><strong>Password:</strong></label>
-                            <button className="settings-edit-button" onClick={handleShowPassword}>Edit</button>
-                        </div>
-                        <p>********</p>
-                    </ListGroup.Item>
-                </ListGroup>
+        !isLoaded ?
+            <div className="loader">
+                <ScaleLoader />
             </div>
-            <Modal show={showEmail} onHide={handleCloseEmail} centered>
-                <form onSubmit={changeEmail}>
-                    <Modal.Header closeButton>
-                        <Modal.Title>Change your email address</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                        <Form.Label>New Email</Form.Label>
-                        <Form.Control onChange={e => setNewEmail(e.target.value)} value={newEmail} placeholder="New Email" required />
-                    </Modal.Body>
-                    <Modal.Footer>
-                        <Button variant="primary" type="submit">
-                            Save Changes
-                        </Button>
-                        <Button variant="secondary" onClick={handleCloseEmail}>
-                            Close
-                        </Button>
-                    </Modal.Footer>
-                </form>
-            </Modal>
-            <Modal show={showPassword} onHide={handleClosePassword} centered>
-                <form onSubmit={changePassword}>
-                    <Modal.Header closeButton>
-                        <Modal.Title>Change your password</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                        <Form.Label>Current Password</Form.Label>
-                        <Form.Control onChange={e => setOldPassword(e.target.value)} value={oldPassword} placeholder="Current Password" type="password" required autoComplete="new-password" />
-                        <br />
-                        <Form.Label>New Password</Form.Label>
-                        <Form.Control onChange={e => setNewPassword(e.target.value)} value={newPassword} placeholder="New Password" type="password" required autoComplete="new-password" />
-                        <br />
-                        <Form.Label>Confirm New Password</Form.Label>
-                        <Form.Control onChange={e => setPasswordConfirmation(e.target.value)} value={passwordConfirmation} placeholder="Confirm Password" type="password" required autoComplete="new-password" />
-                        <br />
-                    </Modal.Body>
-                    <Modal.Footer>
-                        <Button variant="primary" type="submit">
-                            Save Changes
-                        </Button>
-                        <Button variant="secondary" onClick={handleClosePassword}>
-                            Close
-                        </Button>
-                    </Modal.Footer>
-                </form>
-            </Modal>
-            <ToastContainer
-                position="bottom-right"
-                autoClose={4000}
-                hideProgressBar={false}
-                newestOnTop={false}
-                closeOnClick
-                rtl={false}
-                pauseOnFocusLoss={false}
-                draggable
-                pauseOnHover={false}
-            />
-        </div>
+            :
+            <div className="settings-container">
+                <h2>Order History</h2>
+                {orders.length > 0 ?
+                    <div className="row orders">
+                        {orders.map((order, index) => <div key={index}><OrderHistoryItem user={user} order={order} /></div>)}
+                    </div> :
+                    <div className="no-orders">
+                        <h3>You haven't made any orders yet.</h3>
+                    </div>
+                }
+                <div className="row settings">
+                    <h3>Login & Security</h3>
+                    <ListGroup>
+                        <ListGroup.Item>
+                            <div className="email-edit-container">
+                                <label><strong>Email:</strong></label>
+                                <button className="settings-edit-button" onClick={handleShowEmail}>Edit</button>
+                            </div>
+                            <p>{user.email}</p>
+                        </ListGroup.Item>
+                        <ListGroup.Item>
+                            <div className="password-edit-container">
+                                <label><strong>Password:</strong></label>
+                                <button className="settings-edit-button" onClick={handleShowPassword}>Edit</button>
+                            </div>
+                            <p>********</p>
+                        </ListGroup.Item>
+                    </ListGroup>
+                </div>
+                <Modal show={showEmail} onHide={handleCloseEmail} centered>
+                    <form onSubmit={changeEmail}>
+                        <Modal.Header closeButton>
+                            <Modal.Title>Change your email address</Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>
+                            <Form.Label>New Email</Form.Label>
+                            <Form.Control onChange={e => setNewEmail(e.target.value)} value={newEmail} placeholder="New Email" required />
+                        </Modal.Body>
+                        <Modal.Footer>
+                            <Button variant="primary" type="submit">
+                                Save Changes
+                            </Button>
+                            <Button variant="secondary" onClick={handleCloseEmail}>
+                                Close
+                            </Button>
+                        </Modal.Footer>
+                    </form>
+                </Modal>
+                <Modal show={showPassword} onHide={handleClosePassword} centered>
+                    <form onSubmit={changePassword}>
+                        <Modal.Header closeButton>
+                            <Modal.Title>Change your password</Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>
+                            <Form.Label>Current Password</Form.Label>
+                            <Form.Control onChange={e => setOldPassword(e.target.value)} value={oldPassword} placeholder="Current Password" type="password" required autoComplete="new-password" />
+                            <br />
+                            <Form.Label>New Password</Form.Label>
+                            <Form.Control onChange={e => setNewPassword(e.target.value)} value={newPassword} placeholder="New Password" type="password" required autoComplete="new-password" />
+                            <br />
+                            <Form.Label>Confirm New Password</Form.Label>
+                            <Form.Control onChange={e => setPasswordConfirmation(e.target.value)} value={passwordConfirmation} placeholder="Confirm Password" type="password" required autoComplete="new-password" />
+                            <br />
+                        </Modal.Body>
+                        <Modal.Footer>
+                            <Button variant="primary" type="submit">
+                                Save Changes
+                            </Button>
+                            <Button variant="secondary" onClick={handleClosePassword}>
+                                Close
+                            </Button>
+                        </Modal.Footer>
+                    </form>
+                </Modal>
+                <ToastContainer
+                    position="bottom-right"
+                    autoClose={4000}
+                    hideProgressBar={false}
+                    newestOnTop={false}
+                    closeOnClick
+                    rtl={false}
+                    pauseOnFocusLoss={false}
+                    draggable
+                    pauseOnHover={false}
+                />
+            </div>
     )
 }
 

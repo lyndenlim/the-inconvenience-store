@@ -1,6 +1,6 @@
-Item.create(name: "Inverted Broom", price: 10.00, category: "other", description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
+Item.create(name: "Self-Watering Can", price: 9.99, category: "other", description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
 molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum
-numquam blanditiis harum quisquam eius", photos: ["broom1", "broom2", "broom3", "broom4"])
+numquam blanditiis harum quisquam eius", photos: ["watering_can1", "watering_can2", "watering_can3", "watering_can4", "watering_can5"])
 Item.create(name: "Durable Button", price: 0.25, category: "personals", description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
 molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum
 numquam blanditiis harum quisquam eius", photos: ["buttons"])
@@ -79,9 +79,9 @@ numquam blanditiis harum quisquam eius", photos: ["toothbrush"])
 Item.create(name: "Compact Umbrella", price: 49.99, category: "weather", description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
 molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum
 numquam blanditiis harum quisquam eius", photos: ["umbrella"])
-Item.create(name: "Self-Watering Can", price: 9.99, category: "other", description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
+Item.create(name: "Inverted Broom", price: 10.00, category: "other", description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
 molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum
-numquam blanditiis harum quisquam eius", photos: ["watering_can1", "watering_can2", "watering_can3", "watering_can4", "watering_can5"])
+numquam blanditiis harum quisquam eius", photos: ["broom1", "broom2", "broom3", "broom4"])
 Item.create(name: "Modern Wine Glass", price: 60.00, category: "kitchen", description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
 molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum
 numquam blanditiis harum quisquam eius", photos: ["wine_glass1", "wine_glass2"])
