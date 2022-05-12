@@ -34,6 +34,7 @@ function OrderSummary({ user, orderNumber, orderDetails }) {
                         </div>
                     )
                 })}
+                <hr />
                 <h3 className="grand-total">Total: ${totalAmount}</h3>
             </div>
         </div >

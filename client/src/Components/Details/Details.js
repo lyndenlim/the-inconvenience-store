@@ -1,10 +1,9 @@
 import { useEffect, useState, useRef } from "react"
 import { useParams } from "react-router-dom"
 import axios from "axios"
+import 'react-toastify/dist/ReactToastify.css';
 import "./Details.css"
 import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-
 
 function Details({ user, setCartCount }) {
     const { id } = useParams()
@@ -17,11 +16,13 @@ function Details({ user, setCartCount }) {
 
     useEffect(() => {
         async function getItemDetails() {
-            const data = await axios.get(`/items/${id}`)
-            setItemDetails(data.data)
-            setPrice(parseFloat(data.data.price).toFixed(2))
-            setMainPhoto(data.data.photos[0])
-            setSubPhotos(data.data.photos)
+            axios.get(`/items/${id}`)
+                .then(data => {
+                    setItemDetails(data.data)
+                    setPrice(parseFloat(data.data.price).toFixed(2))
+                    setMainPhoto(data.data.photos[0])
+                    setSubPhotos(data.data.photos)
+                })
         }
 
         async function setActivePhoto() {
@@ -35,7 +36,7 @@ function Details({ user, setCartCount }) {
     }, [photoArray.current])
 
     function addQuantity() {
-        if (quantity >= 1) {
+        if (quantity >= 1 && quantity < 10) {
             setQuantity(quantity => quantity + 1)
         }
     }
@@ -52,8 +53,8 @@ function Details({ user, setCartCount }) {
             user_id: user.id,
             item_id: id,
             quantity: parseInt(quantity),
-            price: parseInt(price),
-            total: parseInt(price) * parseInt(quantity)
+            price: parseFloat(price),
+            total: parseFloat(price) * parseInt(quantity)
         })
             .then(res => {
                 if (res.status === 201) {
