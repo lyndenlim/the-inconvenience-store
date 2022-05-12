@@ -45,11 +45,7 @@ function NavBar({ user, setUser, setCartCount, cartCount }) {
                     </div>
                 </Link>
                 {!user ?
-                    <Link className="link" to={location.pathname === "/" ? "/signup" : "/"}>
-                        <div>
-                            {location.pathname === "/" ? "Sign Up" : "Login"}
-                        </div>
-                    </Link>
+                    null
                     :
                     <div>
                         <button onClick={() => navigate("/cart")} className="cart-button">
