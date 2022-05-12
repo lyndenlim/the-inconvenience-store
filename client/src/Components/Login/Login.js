@@ -1,10 +1,9 @@
 import "./Login.scss"
-import { Link, useNavigate } from "react-router-dom"
-import { useState, useEffect, useRef } from "react"
-import Form from "react-bootstrap/Form"
-import Button from "react-bootstrap/Button"
+import { useNavigate } from "react-router-dom"
+import { useState, useRef } from "react"
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import axios from "axios"
 
 function Login({ setUser }) {
     const navigate = useNavigate()
@@ -17,70 +16,53 @@ function Login({ setUser }) {
 
     function handleLogin(e) {
         e.preventDefault()
-        fetch("/login", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ email: loginEmail, password: loginPassword }),
-        }).then(res => {
-            if (res.ok) {
-                res.json()
-                    .then((user) => {
-                        setUser(user)
-                        navigate("/homepage")
-                    });
-            } else {
-                res.json()
-                    .then(error => {
-                        toast.error(error.errors[0], {
-                            position: "bottom-right",
-                            autoClose: 4000,
-                            hideProgressBar: false,
-                            closeOnClick: true,
-                            pauseOnHover: false,
-                            draggable: true,
-                            progress: undefined,
-                        });
-                    })
-            }
+        axios.post("/login", {
+            email: loginEmail,
+            password: loginPassword
         })
+            .then(res => {
+                if (res.status === 200) {
+                    setUser(res.data)
+                    navigate("/homepage")
+                }
+            })
+            .catch(error => {
+                toast.error(error.response.data.errors[0], {
+                    position: "bottom-right",
+                    autoClose: 4000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: false,
+                    draggable: true,
+                    progress: undefined,
+                });
+            })
     }
 
     function handleSignUp(e) {
         e.preventDefault()
-        fetch("/signup", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                email: signupEmail,
-                password: signupPassword,
-                password_confirmation: confirmPassword,
-            }),
-        }).then(res => {
-            if (res.ok) {
-                res.json()
-                    .then(user => {
-                        setUser(user)
-                        navigate("/homepage")
-                    })
-            } else {
-                res.json()
-                    .then(error => {
-                        toast.error(error.errors[0], {
-                            position: "bottom-right",
-                            autoClose: 4000,
-                            hideProgressBar: false,
-                            closeOnClick: true,
-                            pauseOnHover: false,
-                            draggable: true,
-                            progress: undefined,
-                        });
-                    })
-            }
+        axios.post("/signup", {
+            email: signupEmail,
+            password: signupPassword,
+            password_confirmation: confirmPassword,
         })
+            .then(res => {
+                if (res.status === 200) {
+                    setUser(res.data)
+                    navigate("/homepage")
+                }
+            })
+            .catch(error => {
+                toast.error(error.response.data.errors[0], {
+                    position: "bottom-right",
+                    autoClose: 4000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: false,
+                    draggable: true,
+                    progress: undefined,
+                });
+            })
     }
 
     function switchForm() {

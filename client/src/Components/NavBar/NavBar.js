@@ -2,7 +2,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import "./NavBar.css"
 import Navbar from "react-bootstrap/Navbar"
 import Container from "react-bootstrap/Container"
-import { Link, useNavigate, useLocation } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import Badge from "@mui/material/Badge"
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart"
 import { useEffect } from 'react';
@@ -11,7 +11,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faShop } from "@fortawesome/free-solid-svg-icons"
 
 function NavBar({ user, setUser, setCartCount, cartCount }) {
-    const location = useLocation()
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -26,14 +25,13 @@ function NavBar({ user, setUser, setCartCount, cartCount }) {
     }, [])
 
     function handleLogout() {
-        fetch("/logout", {
-            method: "DELETE"
-        }).then(res => {
-            if (res.ok) {
-                setUser(null)
-                navigate("/")
-            }
-        });
+        axios.delete("/logout")
+            .then(res => {
+                if (res.status === 204) {
+                    setUser(null)
+                    navigate("/")
+                }
+            });
     }
 
     return (
