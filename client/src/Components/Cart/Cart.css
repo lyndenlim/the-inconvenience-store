@@ -6,7 +6,7 @@
     height: 200px;
     width: 200px;
     object-fit: cover;
-    
+
 }
 
 .cart-total,
@@ -54,7 +54,8 @@
     position: relative;
 }
 
-.overall-cart-item-container, .shopping-cart-header {
+.overall-cart-item-container,
+.shopping-cart-header {
     margin-left: 20px;
 }
 
@@ -69,14 +70,6 @@
     width: 100%;
     display: inline-block;
     margin-left: 20px;
-}
-
-.item-dropdown {
-    margin-right: 5px;
-}
-
-.delete-button-container {
-    margin-left: 5px;
 }
 
 .delete-button {
@@ -94,7 +87,17 @@
 }
 
 .button-select {
-    float: left;
+    width: fit-content;
+    display: flex;
+    align-items: center;
+}
+
+.separator {
+    border-left: 1px solid grey;
+    margin-left: 15px;
+    margin-right: 5px;
+    height: 20px;
+    /* height: 125px; */
 }
 
 .cart-category-container {

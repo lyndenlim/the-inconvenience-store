@@ -28,8 +28,8 @@ function NavBar({ user, setUser, setCartCount, cartCount }) {
     function handleLogout() {
         fetch("/logout", {
             method: "DELETE"
-        }).then((r) => {
-            if (r.ok) {
+        }).then(res => {
+            if (res.ok) {
                 setUser(null)
                 navigate("/")
             }

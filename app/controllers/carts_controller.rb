@@ -1,6 +1,6 @@
 class CartsController < ApplicationController
   def index
-    render json: Cart.all
+    render json: Cart.all.order(:id)
   end
 
   def show
@@ -20,5 +20,9 @@ class CartsController < ApplicationController
   def clear
     Cart.destroy_all
     head :no_content
+  end
+
+  def update
+    Cart.find(params[:id]).update!(params.permit(:quantity))
   end
 end

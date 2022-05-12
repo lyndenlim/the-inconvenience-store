@@ -6,11 +6,13 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import empty_cart from "../../photos/empty_cart.jpg"
 import { motion } from "framer-motion"
+import Form from "react-bootstrap/Form"
 
 function Cart({ user, cartCount, setCartCount }) {
     const navigate = useNavigate()
     const [cartItems, setCartItems] = useState([])
     const [isDeleted, setIsDeleted] = useState(false)
+    const [isUpdated, setIsUpdated] = useState(false)
 
     useEffect(() => {
         async function getCart() {
@@ -19,7 +21,7 @@ function Cart({ user, cartCount, setCartCount }) {
         }
 
         getCart()
-    }, [isDeleted])
+    }, [isDeleted, isUpdated])
 
     function removeFromCart(id, quantity) {
         for (let i = 0; i < cartItems.length; i++) {
@@ -54,6 +56,21 @@ function Cart({ user, cartCount, setCartCount }) {
         }
     }
 
+    function editQuantity(e, id, quantity) {
+        axios.patch(`/carts/${id}`, {
+            quantity: e.target.value
+        })
+            .then(() => {
+                setIsUpdated(isUpdated => !isUpdated)
+            })
+
+        if (parseInt(e.target.value) < quantity) {
+            setCartCount(cartCount => cartCount - (quantity - parseInt(e.target.value)))
+        } else if (parseInt(e.target.value) > quantity) {
+            setCartCount(cartCount => cartCount + (parseInt(e.target.value) - quantity))
+        }
+    }
+
     return (
         <div className="row col-container">
             {cartItems.length > 0 ? <h2 className="shopping-cart-header">Shopping Cart</h2> : null}
@@ -75,17 +92,21 @@ function Cart({ user, cartCount, setCartCount }) {
                                     </div>
                                     <br />
                                     <br />
-                                    <div className="button-select">
-                                        <span className="item-dropdown">
-                                            <select>
-                                                <option>
-                                                    {item.quantity}
-                                                </option>
-                                            </select>
-                                        </span>
-                                        <span className="delete-button-container">
-                                            <button className="delete-button" onClick={() => removeFromCart(item.id, item.quantity)}>Delete</button>
-                                        </span>
+                                    <div className="button-select" >
+                                        <Form.Select onChange={e => editQuantity(e, item.id, item.quantity)} value={item.quantity}>
+                                            <option>1</option>
+                                            <option>2</option>
+                                            <option>3</option>
+                                            <option>4</option>
+                                            <option>5</option>
+                                            <option>6</option>
+                                            <option>7</option>
+                                            <option>8</option>
+                                            <option>9</option>
+                                            <option>10</option>
+                                        </Form.Select>
+                                        <span className="separator"></span>
+                                        <button className="delete-button" onClick={() => removeFromCart(item.id, item.quantity)}>Remove</button>
                                     </div>
                                 </div>
                             </div>

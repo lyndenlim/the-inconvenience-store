@@ -9,6 +9,7 @@ import Cart from "./Components/Cart/Cart";
 import AccountPage from "./Components/AccountPage/AccountPage";
 import CheckoutPage from "./Components/CheckoutPage/CheckoutPage";
 import OrderSummary from "./Components/OrderSummary/OrderSummary";
+import axios from "axios";
 
 function App() {
   const [user, setUser] = useState("")
@@ -17,15 +18,15 @@ function App() {
   const [orderDetails, setOrderDetails] = useState([])
 
   useEffect(() => {
-    fetch("/me")
-      .then(res => {
-        if (res.ok) {
-          res.json()
-            .then(user => setUser(user));
-        }
-      })
-  }, [cartCount])
+    async function setCurrentUserData() {
+      axios.get("/me")
+        .then(res => {
+          setUser(res.data)
+        });
+    }
 
+    setCurrentUserData()
+  }, [cartCount])
 
   return (
     <div className="App">
