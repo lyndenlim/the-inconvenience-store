@@ -425,7 +425,7 @@ function CheckoutPage({ user, setCartCount, orderNumber, setOrderNumber, orderDe
                         </Col>
                     </Row>
                     <hr />
-                    <h2>Payment</h2>
+                    <h2>Payment*</h2>
                     <Form.Label>Name on card</Form.Label>
                     <Form.Control onChange={e => setCardName(e.target.value)} value={cardName} placeholder="Name on Card" required />
                     <br />
@@ -442,6 +442,9 @@ function CheckoutPage({ user, setCartCount, orderNumber, setOrderNumber, orderDe
                             <Form.Control onChange={e => setSecurityCode(e.target.value)} value={securityCode} placeholder="Security Code" type="number" className="number-input" required />
                         </Col>
                     </Row>
+                    <br />
+                    *No payment information is stored/sent anywhere.
+                    <br />
                     <br />
                     <div className="truck-button-container">
                         <button onClick={truckAnimation} className="truck-button" type="submit">

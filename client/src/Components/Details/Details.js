@@ -51,9 +51,9 @@ function Details({ user, setCartCount }) {
         axios.post("/carts", {
             user_id: user.id,
             item_id: id,
-            quantity: quantity,
-            price: price,
-            total: price * quantity
+            quantity: parseInt(quantity),
+            price: parseInt(price),
+            total: parseInt(price) * parseInt(quantity)
         })
             .then(res => {
                 if (res.status === 201) {
