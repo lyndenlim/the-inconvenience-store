@@ -14,6 +14,7 @@ function Cart() {
     const [cartItems, setCartItems] = useState([])
     const [isDeleted, setIsDeleted] = useState(false)
     const [isUpdated, setIsUpdated] = useState(false)
+    const [isLoading, setIsLoading] = useState(true)
     const { user } = useContext(UserContext)
     const { cartCount } = useContext(UserContext)
     const { setCartCount } = useContext(UserContext)
@@ -23,6 +24,7 @@ function Cart() {
             axios.get(`/users/${user.id}`)
                 .then(data => {
                     setCartItems(data.data.carts)
+                    setIsLoading(false)
                 })
         }
 
@@ -134,12 +136,13 @@ function Cart() {
                     <button className="proceed-to-checkout" onClick={() => navigate("/checkout")}>Proceed to checkout</button>
                 </div>
                 :
-                <motion.div className="empty-cart" initial={{ y: -100 }} animate={{ y: 0 }}>
-                    <div className="empty-cart-image-container">
-                        <img className="empty-cart-image" src={empty_cart} alt="empty-cart" />
-                    </div>
-                    <h1 className="your-cart-empty">Your Cart is Empty</h1>
-                </motion.div>
+                !isLoading ?
+                    <motion.div className="empty-cart" initial={{ y: -100 }} animate={{ y: 0 }}>
+                        <div className="empty-cart-image-container">
+                            <img className="empty-cart-image" src={empty_cart} alt="empty-cart" />
+                        </div>
+                        <h1 className="your-cart-empty">Your Cart is Empty</h1>
+                    </motion.div> : null
             }
             <ToastContainer
                 position="bottom-right"
