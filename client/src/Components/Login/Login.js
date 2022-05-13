@@ -70,7 +70,7 @@ function Login({ setUser }) {
     }
 
     return (
-        <div className="cont" ref={registrationContainer}>
+        <div className="cont s--signup" ref={registrationContainer}>
             <div className="form sign-in">
                 <h2 className="login-header">Welcome Back</h2>
                 <form onSubmit={handleLogin}>
@@ -92,7 +92,7 @@ function Login({ setUser }) {
                         <p className="signup-subheader">Sign up and discover great new products!</p>
                     </div>
                     <div className="img__text m--in">
-                        <h2 className="login-header">One of us?</h2>
+                        <h2 className="login-header">Returning?</h2>
                         <p className="login-subheader">If you already have an account, just sign in. We've missed you!</p>
                     </div>
                     <div onClick={switchForm} className="img__btn">
