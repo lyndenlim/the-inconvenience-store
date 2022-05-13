@@ -1,11 +1,12 @@
 import "./Login.scss"
 import { useNavigate } from "react-router-dom"
-import { useState, useRef } from "react"
+import { useState, useRef, useContext } from "react"
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { UserContext } from "../../Components/UserContext/UserContext"
 import axios from "axios"
 
-function Login({ setUser }) {
+function Login() {
     const navigate = useNavigate()
     const [loginEmail, setLoginEmail] = useState("")
     const [loginPassword, setLoginPassword] = useState("")
@@ -13,6 +14,7 @@ function Login({ setUser }) {
     const [signupPassword, setSignupPassword] = useState("")
     const [confirmPassword, setConfirmPassword] = useState("")
     const registrationContainer = useRef()
+    const { setUser } = useContext(UserContext)
 
     function handleLogin(e) {
         e.preventDefault()

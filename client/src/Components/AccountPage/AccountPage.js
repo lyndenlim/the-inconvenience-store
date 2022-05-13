@@ -1,5 +1,5 @@
 import "./AccountPage.css"
-import { useState, useEffect } from "react"
+import { useState, useEffect, useContext } from "react"
 import axios from "axios"
 import ListGroup from "react-bootstrap/ListGroup"
 import Modal from "react-bootstrap/Modal"
@@ -9,8 +9,9 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import OrderHistoryItem from "./OrderHistoryItem"
 import ScaleLoader from "react-spinners/ScaleLoader"
+import { UserContext } from "../../Components/UserContext/UserContext"
 
-function AccountPage({ user }) {
+function AccountPage() {
     const [newEmail, setNewEmail] = useState("")
     const [oldPassword, setOldPassword] = useState("")
     const [newPassword, setNewPassword] = useState("")
@@ -19,6 +20,7 @@ function AccountPage({ user }) {
     const [showEmail, setShowEmail] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
     const [isLoaded, setIsLoaded] = useState(false);
+    const { user } = useContext(UserContext)
 
     const handleCloseEmail = () => setShowEmail(false);
     const handleShowEmail = () => setShowEmail(true);

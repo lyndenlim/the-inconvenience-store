@@ -1,14 +1,15 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./CheckoutPage.scss"
 import axios from "axios"
-import { useEffect, useState } from "react"
+import { useEffect, useState, useContext } from "react"
 import { useNavigate } from "react-router-dom"
 import Form from "react-bootstrap/Form"
 import Col from "react-bootstrap/Col"
 import Row from "react-bootstrap/Row"
 import gsap from "gsap"
+import { UserContext } from "../../Components/UserContext/UserContext"
 
-function CheckoutPage({ user, setCartCount, orderNumber, setOrderNumber, orderDetails, setOrderDetails }) {
+function CheckoutPage() {
     const navigate = useNavigate()
     const [priceArray, setPriceArray] = useState([])
     const [firstName, setFirstName] = useState("")
@@ -25,6 +26,12 @@ function CheckoutPage({ user, setCartCount, orderNumber, setOrderNumber, orderDe
     const [securityCode, setSecurityCode] = useState("")
     const [stateSalesTax, setStateSalesTax] = useState(0)
     const [quantityArray, setQuantityArray] = useState([])
+    const { user } = useContext(UserContext)
+    const { setCartCount } = useContext(UserContext)
+    const { orderNumber } = useContext(UserContext)
+    const { setOrderNumber } = useContext(UserContext)
+    const { orderDetails } = useContext(UserContext)
+    const { setOrderDetails } = useContext(UserContext)
 
     useEffect(() => {
         async function getOrderDetails() {

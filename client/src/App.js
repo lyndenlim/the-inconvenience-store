@@ -8,6 +8,7 @@ import Cart from "./Components/Cart/Cart";
 import AccountPage from "./Components/AccountPage/AccountPage";
 import CheckoutPage from "./Components/CheckoutPage/CheckoutPage";
 import OrderSummary from "./Components/OrderSummary/OrderSummary";
+import { UserContext } from "./Components/UserContext/UserContext";
 import axios from "axios";
 
 function App() {
@@ -21,7 +22,7 @@ function App() {
       axios.get("/me")
         .then(res => {
           setUser(res.data)
-        });
+        })
     }
 
     setCurrentUserData()
@@ -29,16 +30,18 @@ function App() {
 
   return (
     <div className="App">
-      <NavBar user={user} setUser={setUser} setCartCount={setCartCount} cartCount={cartCount} />
-      <Routes>
-        <Route path="/" element={<Login setUser={setUser} />} />
-        <Route path="/homepage" element={<HomePage />} />
-        <Route path="/items/:id" element={<Details user={user} setCartCount={setCartCount} />} />
-        <Route path="/cart" element={<Cart user={user} cartCount={cartCount} setCartCount={setCartCount} />} />
-        <Route path="/account" element={<AccountPage user={user} />} />
-        <Route path="/checkout" element={<CheckoutPage user={user} setCartCount={setCartCount} orderNumber={orderNumber} setOrderNumber={setOrderNumber} orderDetails={orderDetails} setOrderDetails={setOrderDetails} />} />
-        <Route path="/ordersummary" element={<OrderSummary user={user} orderNumber={orderNumber} orderDetails={orderDetails} />} />
-      </Routes>
+      <UserContext.Provider value={{ user, setUser, cartCount, setCartCount, orderNumber, setOrderNumber, orderDetails, setOrderDetails }}>
+        <NavBar />
+        <Routes>
+          <Route path="/" element={<Login />} />
+          <Route path="/homepage" element={<HomePage />} />
+          <Route path="/items/:id" element={<Details />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/account" element={<AccountPage />} />
+          <Route path="/checkout" element={<CheckoutPage />} />
+          <Route path="/ordersummary" element={<OrderSummary />} />
+        </Routes>
+      </UserContext.Provider>
     </div>
   );
 }

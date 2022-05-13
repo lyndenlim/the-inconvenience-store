@@ -5,13 +5,18 @@ import Container from "react-bootstrap/Container"
 import { Link, useNavigate } from "react-router-dom"
 import Badge from "@mui/material/Badge"
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart"
-import { useEffect } from 'react';
+import { useEffect, useContext } from 'react';
 import axios from 'axios';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faShop } from "@fortawesome/free-solid-svg-icons"
+import { UserContext } from "../../Components/UserContext/UserContext"
 
-function NavBar({ user, setUser, setCartCount, cartCount }) {
+function NavBar() {
     const navigate = useNavigate()
+    const { user } = useContext(UserContext)
+    const { setUser } = useContext(UserContext)
+    const { cartCount } = useContext(UserContext)
+    const { setCartCount } = useContext(UserContext)
 
     useEffect(() => {
         async function getCart() {
@@ -19,6 +24,7 @@ function NavBar({ user, setUser, setCartCount, cartCount }) {
             if (data.data.carts.length > 0) {
                 setCartCount(data.data.carts.map(cart => cart.quantity).reduce((prev, current) => prev + current))
             }
+
         }
 
         getCart()

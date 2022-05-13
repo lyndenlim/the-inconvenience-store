@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState, useContext } from "react"
 import { useNavigate, Link } from "react-router-dom"
 import axios from "axios"
 import empty_cart from "../../photos/empty_cart.jpg"
@@ -7,13 +7,17 @@ import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer, toast } from 'react-toastify';
 import { motion } from "framer-motion"
 import Form from "react-bootstrap/Form"
+import { UserContext } from "../../Components/UserContext/UserContext"
 
-function Cart({ user, cartCount, setCartCount }) {
+function Cart() {
     const navigate = useNavigate()
     const [cartItems, setCartItems] = useState([])
     const [isDeleted, setIsDeleted] = useState(false)
     const [isUpdated, setIsUpdated] = useState(false)
     const [subtotal, setSubtotal] = useState(null)
+    const { user } = useContext(UserContext)
+    const { cartCount } = useContext(UserContext)
+    const { setCartCount } = useContext(UserContext)
 
     useEffect(() => {
         async function getCartData() {
@@ -64,7 +68,7 @@ function Cart({ user, cartCount, setCartCount }) {
 
     function editQuantity(e, id, quantity) {
         axios.patch(`/carts/${id}`, {
-            quantity: e.target.value
+            quantity: parseInt(e.target.value)
         })
             .then(() => {
                 setIsUpdated(isUpdated => !isUpdated)

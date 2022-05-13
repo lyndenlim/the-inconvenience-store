@@ -1,9 +1,13 @@
 import axios from "axios"
-import { useEffect, useState } from "react"
+import { useEffect, useState, useContext } from "react"
 import "./OrderSummary.css"
+import { UserContext } from "../../Components/UserContext/UserContext"
 
-function OrderSummary({ user, orderNumber, orderDetails }) {
+function OrderSummary() {
     const [totalAmount, setTotalAmount] = useState(1)
+    const { user } = useContext(UserContext)
+    const { orderNumber } = useContext(UserContext)
+    const { orderDetails } = useContext(UserContext)
 
     useEffect(() => {
         async function getTotalAmount() {

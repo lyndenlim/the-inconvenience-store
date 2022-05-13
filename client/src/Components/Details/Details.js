@@ -1,11 +1,12 @@
-import { useEffect, useState, useRef } from "react"
+import { useEffect, useState, useRef, useContext } from "react"
 import { useParams } from "react-router-dom"
 import axios from "axios"
 import 'react-toastify/dist/ReactToastify.css';
 import "./Details.css"
 import { ToastContainer, toast } from 'react-toastify';
+import { UserContext } from "../../Components/UserContext/UserContext"
 
-function Details({ user, setCartCount }) {
+function Details() {
     const { id } = useParams()
     const [itemDetails, setItemDetails] = useState("")
     const [price, setPrice] = useState(0)
@@ -13,6 +14,8 @@ function Details({ user, setCartCount }) {
     const [mainPhoto, setMainPhoto] = useState("")
     const [subPhotos, setSubPhotos] = useState([])
     const photoArray = useRef()
+    const { user } = useContext(UserContext)
+    const { setCartCount } = useContext(UserContext)
 
     useEffect(() => {
         async function getItemDetails() {
