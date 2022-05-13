@@ -72,7 +72,7 @@ function Login({ setUser }) {
     return (
         <div className="cont" ref={registrationContainer}>
             <div className="form sign-in">
-                <h2 className="login-header">Welcome Back!</h2>
+                <h2 className="login-header">Welcome Back</h2>
                 <form onSubmit={handleLogin}>
                     <label className="input-label">
                         <span className="label-text">Email</span>

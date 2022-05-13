@@ -22,13 +22,14 @@ function NavBar({ user, setUser, setCartCount, cartCount }) {
         }
 
         getCart()
-    }, [])
+    }, [user])
 
     function handleLogout() {
         axios.delete("/logout")
             .then(res => {
                 if (res.status === 204) {
                     setUser(null)
+                    setCartCount(0)
                     navigate("/")
                 }
             });
@@ -37,11 +38,14 @@ function NavBar({ user, setUser, setCartCount, cartCount }) {
     return (
         <Navbar>
             <Container fluid>
-                <Link className="link" to="/homepage">
+                {user ? <Link className="link" to="/homepage">
                     <div className="logo">
                         <span><FontAwesomeIcon icon={faShop} /> The Inconvienence Store</span>
                     </div>
-                </Link>
+                </Link> :
+                    <div className="logo-disabled">
+                        <span><FontAwesomeIcon icon={faShop} /> The Inconvienence Store</span>
+                    </div>}
                 {!user ?
                     null
                     :
