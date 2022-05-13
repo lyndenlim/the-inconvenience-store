@@ -116,6 +116,7 @@ function CheckoutPage() {
                     break;
                 case "NJ":
                     setStateSalesTax(0.0660)
+                    break;
                 case "IA":
                     setStateSalesTax(0.0694)
                     break;
@@ -137,7 +138,7 @@ function CheckoutPage() {
                 case "FL":
                     setStateSalesTax(0.0701)
                     break;
-                case "MI":
+                case "MS":
                     setStateSalesTax(0.0707)
                     break;
                 case "UT":
@@ -154,6 +155,7 @@ function CheckoutPage() {
                     break;
                 case "MN":
                     setStateSalesTax(0.0749)
+                    break;
                 case "CO":
                     setStateSalesTax(0.0777)
                     break;
@@ -201,6 +203,8 @@ function CheckoutPage() {
                     break;
                 case "TN":
                     setStateSalesTax(0.0955)
+                    break;
+                default: setStateSalesTax(0)
                     break;
             }
         }

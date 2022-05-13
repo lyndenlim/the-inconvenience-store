@@ -14,7 +14,6 @@ function Cart() {
     const [cartItems, setCartItems] = useState([])
     const [isDeleted, setIsDeleted] = useState(false)
     const [isUpdated, setIsUpdated] = useState(false)
-    const [subtotal, setSubtotal] = useState([])
     const { user } = useContext(UserContext)
     const { cartCount } = useContext(UserContext)
     const { setCartCount } = useContext(UserContext)
@@ -24,9 +23,6 @@ function Cart() {
             axios.get(`/users/${user.id}`)
                 .then(data => {
                     setCartItems(data.data.carts)
-                    if (cartItems.length > 0) {
-                        setSubtotal(cartItems.map(item => parseFloat(item.total)).reduce((prev, current) => prev + current).toFixed(2))
-                    }
                 })
         }
 
@@ -132,9 +128,9 @@ function Cart() {
                 )}
             </div>
 
-            {cartCount > 0 ?
+            {cartItems.length > 0 ?
                 <div className="col-4 cart-subtotal">
-                    <p className="subtotal-text">Subtotal ({cartCount} items): <strong>${subtotal}</strong></p>
+                    <p className="subtotal-text">Subtotal ({cartCount} items): <strong>${cartItems.map(item => parseFloat(item.total)).reduce((prev, current) => prev + current).toFixed(2)}</strong></p>
                     <button className="proceed-to-checkout" onClick={() => navigate("/checkout")}>Proceed to checkout</button>
                 </div>
                 :

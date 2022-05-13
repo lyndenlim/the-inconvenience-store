@@ -18,8 +18,8 @@ function HomePage() {
 
   useEffect(() => {
     async function getAllItems() {
-      axios.get("/items").
-        then(data => {
+      axios.get("/items")
+        .then(data => {
           setItems(data.data)
           setItemArray(data.data.map(item => item))
           setTimeout(() => {
