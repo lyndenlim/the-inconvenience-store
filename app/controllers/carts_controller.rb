@@ -23,6 +23,6 @@ class CartsController < ApplicationController
   end
 
   def update
-    Cart.find(params[:id]).update!(params.permit(:quantity))
+    render json: Cart.find(params[:id]).update!(params.permit(:quantity, :total))
   end
 end

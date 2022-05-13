@@ -14,7 +14,7 @@ function Cart() {
     const [cartItems, setCartItems] = useState([])
     const [isDeleted, setIsDeleted] = useState(false)
     const [isUpdated, setIsUpdated] = useState(false)
-    const [subtotal, setSubtotal] = useState(null)
+    const [subtotal, setSubtotal] = useState([])
     const { user } = useContext(UserContext)
     const { cartCount } = useContext(UserContext)
     const { setCartCount } = useContext(UserContext)
@@ -25,7 +25,7 @@ function Cart() {
                 .then(data => {
                     setCartItems(data.data.carts)
                     if (cartItems.length > 0) {
-                        setSubtotal(cartItems.map(item => parseFloat(item.price * item.quantity)).reduce((prev, current) => prev + current).toFixed(2))
+                        setSubtotal(cartItems.map(item => parseFloat(item.total)).reduce((prev, current) => prev + current).toFixed(2))
                     }
                 })
         }
@@ -66,9 +66,10 @@ function Cart() {
         }
     }
 
-    function editQuantity(e, id, quantity) {
+    function editQuantity(e, id, quantity, price) {
         axios.patch(`/carts/${id}`, {
-            quantity: parseInt(e.target.value)
+            quantity: parseInt(e.target.value),
+            total: parseInt(e.target.value) * price
         })
             .then(() => {
                 setIsUpdated(isUpdated => !isUpdated)
@@ -107,7 +108,7 @@ function Cart() {
                                     <br />
                                     <br />
                                     <div className="button-select" >
-                                        <Form.Select onChange={e => editQuantity(e, item.id, item.quantity)} value={item.quantity}>
+                                        <Form.Select onChange={e => editQuantity(e, item.id, item.quantity, item.price)} value={item.quantity}>
                                             <option>1</option>
                                             <option>2</option>
                                             <option>3</option>

@@ -19,8 +19,8 @@ ActiveRecord::Schema.define(version: 2022_05_06_193857) do
     t.bigint "user_id"
     t.bigint "item_id"
     t.bigint "quantity"
-    t.decimal "price"
-    t.decimal "total"
+    t.float "price"
+    t.float "total"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

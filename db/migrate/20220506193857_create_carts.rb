@@ -4,8 +4,8 @@ class CreateCarts < ActiveRecord::Migration[6.1]
       t.bigint :user_id
       t.bigint :item_id
       t.bigint :quantity
-      t.decimal :price
-      t.decimal :total
+      t.float :price
+      t.float :total
 
       t.timestamps
     end
