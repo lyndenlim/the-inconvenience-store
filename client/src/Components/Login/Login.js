@@ -49,7 +49,6 @@ function Login() {
             password_confirmation: confirmPassword,
         })
             .then(res => {
-                console.log(res)
                 if (res.status === 201) {
                     setUser(res.data)
                     navigate("/homepage")

@@ -30,6 +30,7 @@
     width: fit-content;
     color: black;
     z-index: -1;
+    text-align: center;
 }
 
 .item-content {
