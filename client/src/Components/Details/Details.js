@@ -6,6 +6,7 @@ import "./Details.css"
 import { ToastContainer, toast } from 'react-toastify';
 import { UserContext } from "../../Components/UserContext/UserContext"
 import Form from "react-bootstrap/Form";
+import { motion } from "framer-motion"
 
 function Details() {
     const { id } = useParams()
@@ -106,7 +107,7 @@ function Details() {
             </div>
             {subPhotos.length > 1 ?
                 <div className="col-2 sub-photo-container" ref={photoArray}>
-                    {subPhotos.map(photo => <img key={photo} onClick={() => switchSelectedPhoto(photo)} className="sub-photo" src={require(`../../photos/${photo}.jpeg`)} alt="sub" />)}
+                    {subPhotos.map(photo => <motion.img whileHover={{ scale: 1.1 }} key={photo} onClick={() => switchSelectedPhoto(photo)} className="sub-photo" src={require(`../../photos/${photo}.jpeg`)} alt="sub" />)}
                 </div>
                 :
                 null}
