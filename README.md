@@ -1,5 +1,5 @@
 # The Inconvienence Store
-E-commerce shop that features your everyday inconvenient items. <br/>
+E-commerce store that features your everyday inconvenient items. <br/>
 Hosted on Heroku: https://the-inconvienence-store.herokuapp.com/
 
 
