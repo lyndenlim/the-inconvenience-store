@@ -9,7 +9,12 @@
     overflow: auto;
 }
 
+.order-history-thumbnail {
+    width: auto;
+}
+
 .order-history-image {
+    text-align: center;
     margin-right: 10px;
 }
 
