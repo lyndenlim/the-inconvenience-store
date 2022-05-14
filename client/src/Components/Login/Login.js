@@ -20,7 +20,7 @@ function Login() {
     function handleLogin(e) {
         e.preventDefault()
         axios.post("/login", {
-            email: loginEmail,
+            email: loginEmail.trim(),
             password: loginPassword
         })
             .then(res => {
@@ -45,7 +45,7 @@ function Login() {
     function handleSignUp(e) {
         e.preventDefault()
         axios.post("/signup", {
-            email: signupEmail,
+            email: signupEmail.trim(),
             password: signupPassword,
             password_confirmation: confirmPassword,
         })

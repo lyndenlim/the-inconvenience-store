@@ -219,12 +219,12 @@ function CheckoutPage() {
         axios.post("/orders", {
             user_id: user.id,
             all_items: orderDetails,
-            first_name: firstName,
-            last_name: lastName,
-            email: email,
-            address: address,
-            address2: address2,
-            city: city,
+            first_name: firstName.trim(),
+            last_name: lastName.trim(),
+            email: email.trim(),
+            address: address.trim(),
+            address2: address2.trim(),
+            city: city.trim(),
             state: state,
             postcode: postcode,
             order_number: orderNumber,
@@ -361,7 +361,7 @@ function CheckoutPage() {
                     </Row>
                     <br />
                     <Form.Label>Email</Form.Label>
-                    <Form.Control onChange={e => setEmail(e.target.value)} value={email} placeholder="Email" required />
+                    <Form.Control onChange={e => setEmail(e.target.value)} value={email} placeholder="Email" type="email" required />
                     <br />
                     <Form.Label>Address</Form.Label>
                     <Form.Control onChange={e => setAddress(e.target.value)} value={address} placeholder="Address" required />
