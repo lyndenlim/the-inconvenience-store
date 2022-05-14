@@ -5,6 +5,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import "./Details.css"
 import { ToastContainer, toast } from 'react-toastify';
 import { UserContext } from "../../Components/UserContext/UserContext"
+import Form from "react-bootstrap/Form";
 
 function Details() {
     const { id } = useParams()
@@ -118,7 +119,7 @@ function Details() {
                     <form onSubmit={addToCart}>
                         <div className="button-input-container">
                             <div className="input-container">
-                                <input onChange={e => setQuantity(parseInt(e.target.value))} className="quantity" value={quantity} min="1" max="999" autoComplete="new-password" type="number" readOnly required />
+                                <Form.Control onChange={e => setQuantity(parseInt(e.target.value))} className="quantity" value={quantity} min="1" max="10" autoComplete="new-password" type="number" readOnly required />
                             </div>
                             <div className="button-container">
                                 <div className="row">

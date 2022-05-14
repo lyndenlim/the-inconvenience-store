@@ -48,6 +48,7 @@
 .quantity {
     width: 5ch;
     text-align: center;
+    background: white !important;
 }
 
 .add-to-cart {
