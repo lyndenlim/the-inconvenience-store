@@ -14,6 +14,7 @@ function Login() {
     const [signupPassword, setSignupPassword] = useState("")
     const [confirmPassword, setConfirmPassword] = useState("")
     const registrationContainer = useRef()
+    const { user } = useContext(UserContext)
     const { setUser } = useContext(UserContext)
 
     function handleLogin(e) {
@@ -69,6 +70,10 @@ function Login() {
 
     function switchForm() {
         registrationContainer.current.classList.toggle("s--signup")
+    }
+
+    if (user) {
+        navigate("/homepage")
     }
 
     return (
