@@ -5,7 +5,7 @@ import { motion } from "framer-motion"
 
 function Item({ item }) {
     return (
-        <motion.div className="photo-container" layout initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+        <motion.div className="photo-container" layout >
             {item.photos.length > 1 ?
                 <Carousel className="carousel-dark" fade interval={null}>
                     {item.photos.map(image =>
