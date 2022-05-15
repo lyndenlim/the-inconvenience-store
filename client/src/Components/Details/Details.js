@@ -35,6 +35,8 @@ function Details() {
                 Array.from(photoArray.current.children).map(child => child.classList)[0].add("selected-photo")
             }
         }
+        
+        window.scrollTo(0, 0)
 
         getItemDetails()
         setActivePhoto()
