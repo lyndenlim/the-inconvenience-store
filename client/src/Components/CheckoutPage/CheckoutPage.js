@@ -8,6 +8,8 @@ import Col from "react-bootstrap/Col"
 import Row from "react-bootstrap/Row"
 import gsap from "gsap"
 import { UserContext } from "../../Components/UserContext/UserContext"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faFaceSmileWink } from "@fortawesome/free-regular-svg-icons"
 
 function CheckoutPage() {
     const navigate = useNavigate()
@@ -454,7 +456,7 @@ function CheckoutPage() {
                         </Col>
                     </Row>
                     <br />
-                    *No payment information is stored/sent anywhere.
+                    *Payment will not be processed. Sorry for the <i><strong>inconvenience</strong></i> <FontAwesomeIcon icon={faFaceSmileWink} />
                     <br />
                     <br />
                     <div className="truck-button-container">
