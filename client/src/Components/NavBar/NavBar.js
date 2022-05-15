@@ -46,11 +46,11 @@ function NavBar() {
             <Container fluid>
                 {user ? <Link className="link" to="/homepage">
                     <div className="logo">
-                        <span><FontAwesomeIcon icon={faShop} /> The Inconvienence Store</span>
+                        <span><FontAwesomeIcon icon={faShop} /> The Inconvenience Store</span>
                     </div>
                 </Link> :
                     <div className="logo-disabled">
-                        <span><FontAwesomeIcon icon={faShop} /> The Inconvienence Store</span>
+                        <span><FontAwesomeIcon icon={faShop} /> The Inconvenience Store</span>
                     </div>}
                 {!user ?
                     null

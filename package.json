@@ -1,5 +1,5 @@
 {
-    "name": "the-inconvienence-store",
+    "name": "the-inconvenience-store",
     "description": "Build scripts for Heroku",
     "engines": {
       "node": ">= 14"
